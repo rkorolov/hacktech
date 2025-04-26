@@ -5,61 +5,85 @@ import Sidebar from "@/components/protected/Sidebar";
 import { useAuth } from "@/hooks/use-auth";
 import { AuthLoading, Authenticated, Unauthenticated } from "convex/react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { useEffect, useMemo } from "react";
+import { Loader2, Home, ClipboardList, Users, FileText, Settings } from "lucide-react";
 import { ROLES } from "@/convex/schema";
-import React from "react";
-
-const SidebarProvider = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 
 export default function ProtectedLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const { user } = useAuth();
+}) {
+
+  const { isLoading, isAuthenticated, user } = useAuth();
+
+  // Create role-specific menu items
+  const protectedMenuItems: MenuItem[] = useMemo(() => {
+    // Common menu items for all users
+    const commonItems: MenuItem[] = [
+      { label: "Dashboard", href: "/protected/", icon: Home, section: "Main" },
+    ];
+
+    // Patient-specific menu items
+    const patientItems: MenuItem[] = [
+      { label: "Submit Information", href: "/protected/patient", icon: ClipboardList, section: "Patient" },
+    ];
+
+    // Caregiver-specific menu items
+    const caregiverItems: MenuItem[] = [
+      { label: "Patient List", href: "/protected/caregiver", icon: Users, section: "Caregiver" },
+      { label: "Review Forms", href: "/protected/caregiver/forms", icon: FileText, section: "Caregiver" },
+    ];
+
+    // External links
+    const externalItems: MenuItem[] = [
+      { label: "Home Page", href: "/", section: "Links" },
+      { label: "Learn More", href: "https://vly.ai", section: "crack.diy" },
+      { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'crack.diy' }
+    ];
+
+    // Return appropriate menu items based on user role
+    if (user?.role === ROLES.PATIENT) {
+      return [...commonItems, ...patientItems, ...externalItems];
+    } else if (user?.role === ROLES.CAREGIVER) {
+      return [...commonItems, ...caregiverItems, ...externalItems];
+    }
+
+    // Default menu items if role not set
+    return [
+      ...commonItems,
+      { label: "Set Role", href: "/protected/set-role", icon: Settings, section: "Setup" },
+      ...externalItems
+    ];
+  }, [user]);
+
+  const router = useRouter();
   const pathname = usePathname();
 
-  let protectedMenuItems: MenuItem[] = [
-    { label: 'Dashboard', href: '/protected/', icon: 'LayoutDashboard', section: 'Main' },
-  ];
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push(`/auth?redirect=${encodeURIComponent(pathname)}`);
+    }
+  });
 
-  if (user?.role === ROLES.PATIENT) {
-    protectedMenuItems.push(
-      { label: 'My Profile', href: '/protected/patient', icon: 'User', section: 'Patient' },
-    );
-  }
-
-  if (user?.role === ROLES.CAREGIVER) {
-    protectedMenuItems.push(
-      { label: 'My Patients', href: '/protected/caregiver', icon: 'Users', section: 'Caregiver' },
-    );
-  }
-
-  if (user?.role === ROLES.ADMIN) {
-    protectedMenuItems.push(
-      { label: 'Admin Panel', href: '/protected/admin', icon: 'ShieldCheck', section: 'Admin' },
-    );
-  }
-
-  protectedMenuItems.push(
-    { label: 'Account', href: '/protected/account', icon: 'CircleUser', section: 'User' },
-    { label: 'Settings', href: '/protected/settings', icon: 'Settings', section: 'User' },
-    { label: 'Support', href: '/protected/support', icon: 'LifeBuoy', section: 'Help' },
-  );
-
+  // DO NOT TOUCH THIS SECTION. IT IS THE AUTHENTICATION LAYOUT.
   return (
-    <SidebarProvider>
-      <Sidebar
-        menuItems={protectedMenuItems}
-        currentPath={pathname}
-        userEmail={user?.email ?? undefined}
-        userName={user?.name ?? undefined}
-      >
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 bg-muted/40">
+    <>
+      <Unauthenticated>
+        <div className="flex items-center justify-center min-h-screen">
+          <Loader2 className="h-12 w-12 animate-spin " />
+        </div>
+      </Unauthenticated>
+      <AuthLoading>
+        <div className="flex items-center justify-center min-h-screen">
+          <Loader2 className="h-12 w-12 animate-spin " />
+        </div>
+      </AuthLoading>
+      <Authenticated>
+        <Sidebar menuItems={protectedMenuItems} userEmail={user?.email} userName={user?.name}>
           {children}
-        </main>
-      </Sidebar>
-    </SidebarProvider>
+        </Sidebar>
+      </Authenticated>
+    </>
   );
 }

@@ -2,72 +2,74 @@ import { authTables } from "@convex-dev/auth/server";
 import { defineSchema, defineTable } from "convex/server";
 import { Infer, v } from "convex/values";
 
-// default user roles. can add / remove based on the project as needed
 export const ROLES = {
-  ADMIN: "admin",
   PATIENT: "patient",
-  CAREGIVER: "caregiver"
+  CAREGIVER: "caregiver",
 } as const;
 
 export const roleValidator = v.union(
-  v.literal(ROLES.ADMIN),
   v.literal(ROLES.PATIENT),
-  v.literal(ROLES.CAREGIVER)
+  v.literal(ROLES.CAREGIVER),
 )
 export type Role = Infer<typeof roleValidator>;
 
+export const SEVERITY = {
+  MILD: "mild",
+  MODERATE: "moderate", 
+  SEVERE: "severe"
+} as const;
+
+export const severityValidator = v.union(
+  v.literal(SEVERITY.MILD),
+  v.literal(SEVERITY.MODERATE),
+  v.literal(SEVERITY.SEVERE)
+);
+
 const schema = defineSchema({
-  // default auth tables using convex auth.
   ...authTables,
 
-  // the users table is the default users table that is brought in by the authTables
   users: defineTable({
     name: v.optional(v.string()),
     image: v.optional(v.string()),
     email: v.optional(v.string()),
     emailVerificationTime: v.optional(v.number()),
     isAnonymous: v.optional(v.boolean()),
-    role: v.optional(roleValidator)
-  })
-    .index("email", ["email"]),
+    role: v.optional(roleValidator),
+  }).index("email", ["email"]),
 
-  patients: defineTable({
-    userId: v.id("users"),
-    dateOfBirth: v.optional(v.string()),
-    phone: v.optional(v.string()),
-    address: v.optional(v.string()),
-    medicalHistory: v.optional(v.string()),
-    emergencyContact: v.optional(v.string()),
-    insuranceInformation: v.optional(v.string()),
-    priorityScore: v.optional(v.number()),
-    assignedCaregiverIds: v.optional(v.array(v.id("users")))
-  }).index("by_userId", ["userId"]),
-
-  caregivers: defineTable({
-    userId: v.id("users"),
-    specialization: v.optional(v.string()),
-    assignedPatientIds: v.optional(v.array(v.id("users")))
-  }).index("by_userId", ["userId"]),
-
-  appointments: defineTable({
+  patientForms: defineTable({
     patientId: v.id("users"),
-    caregiverId: v.id("users"),
-    dateTime: v.number(),
-    purpose: v.optional(v.string()),
-    notes: v.optional(v.string())
+    symptoms: v.string(),
+    severity: severityValidator,
+    priorityScore: v.number(),
+    contactInfo: v.string(),
+    submissionDate: v.number(),
+    status: v.union(v.literal("pending"), v.literal("reviewed")),
   })
-  .index("by_patientId", ["patientId"])
-  .index("by_caregiverId", ["caregiverId"])
-  .index("by_dateTime", ["dateTime"]),
+    .index("by_patient", ["patientId"])
+    .index("by_priority", ["priorityScore"])
+    .index("by_status", ["status"])
+    .index("by_submission", ["submissionDate"]),
 
-  patientNotes: defineTable({
-    patientId: v.id("users"),
+  caregiverNotes: defineTable({
+    formId: v.id("patientForms"),
     caregiverId: v.id("users"),
-    note: v.string(),
-    creationTime: v.number()
+    noteText: v.string(),
+    dateAdded: v.number(),
   })
-  .index("by_patientId", ["patientId"])
-  .index("by_caregiverId", ["caregiverId"])
+    .index("by_form", ["formId"])
+    .index("by_caregiver", ["caregiverId"]),
+
+  recommendations: defineTable({
+    formId: v.id("patientForms"),
+    caregiverId: v.id("users"),
+    patientId: v.id("users"),
+    recommendationText: v.string(),
+    dateGenerated: v.number(),
+    emailSent: v.boolean(),
+  })
+    .index("by_patient", ["patientId"])
+    .index("by_form", ["formId"]),
 },
 {
   schemaValidation: false

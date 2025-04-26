@@ -1,74 +1,133 @@
 // TODO: UPDATE THE TEXT TO REFLECT THE APP MARKETING
+import React, { useEffect } from "react";
+import { ClipboardList, UserCog, Clock } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Users, CalendarDays, FileText } from 'lucide-react';
+const features = [
+  {
+    name: "Patient Information Forms",
+    description:
+      "Easily submit your symptoms, severity, and contact information through our intuitive form system. Track your submission history and update your information as needed.",
+    href: "#",
+    icon: ClipboardList,
+  },
+  {
+    name: "Caregiver Dashboard",
+    description:
+      "Efficiently manage patient care with our priority-based dashboard. View patient details, add notes, and generate personalized recommendations all in one place.",
+    href: "#",
+    icon: UserCog,
+  },
+  {
+    name: "Priority-Based Care",
+    description:
+      "Our intelligent system automatically prioritizes patients based on symptom severity and wait time, ensuring those who need care most urgently are seen first.",
+    href: "#",
+    icon: Clock,
+  },
+];
 
 export function FeaturesSection() {
-  const features = [
-    {
-      icon: <Users className="h-8 w-8 text-primary" />,
-      title: 'Patient Profiles',
-      description: 'Patients can easily manage their personal details, medical history, and insurance information.',
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
     },
-    {
-      icon: <Users className="h-8 w-8 text-secondary" />,
-      title: 'Caregiver Coordination',
-      description: 'Caregivers can view assigned patients, access necessary details, and add progress notes.',
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
     },
-    {
-      icon: <CalendarDays className="h-8 w-8 text-accent" />,
-      title: 'Appointment Scheduling',
-      description: 'Effortlessly schedule, view, and manage appointments for both patients and caregivers.',
+  };
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
     },
-    {
-      icon: <FileText className="h-8 w-8 text-primary" />,
-      title: 'Secure Data Management',
-      description: 'Your health information is stored securely and accessed only by authorized individuals.',
-    },
-  ];
+  };
 
   return (
-    <section className="py-16 sm:py-24">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter mb-4">
-            Comprehensive Care Coordination
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            Our platform provides the tools needed for efficient healthcare management for patients and caregivers alike.
-          </p>
-        </motion.div>
+    <section id="features" className="container py-24 px-4">
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={headerVariants}
+        className="mx-auto max-w-2xl text-center"
+      >
+        <h3 className="text-sm font-semibold bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent">Streamlined Healthcare</h3>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+          Efficient Patient Management
+        </h2>
+        <p className="mt-6 text-lg text-muted-foreground">
+          Our healthcare management system simplifies the process for both patients and caregivers, 
+          reducing wait times and improving the quality of care through smart prioritization.
+        </p>
+      </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="h-full text-center hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <div className="mx-auto bg-muted rounded-full p-3 w-fit mb-4">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="tracking-tight">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      <motion.div 
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mt-24 lg:max-w-none lg:grid-cols-3"
+      >
+        {features.map((feature) => (
+          <motion.div key={feature.name} variants={itemVariants}>
+            <Card className="border-0 shadow-none bg-transparent">
+              <CardHeader className="p-0">
+                <div className="flex items-center gap-x-3">
+                  <feature.icon className="h-5 w-5 text-blue-600" aria-hidden="true" />
+                  <CardTitle className="text-lg font-semibold text-foreground">
+                    {feature.name}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="mt-4 p-0">
+                <p className="text-muted-foreground">{feature.description}</p>
+                <div className="mt-6">
+                  <Button variant="link" className="p-0 text-cyan-600 hover:text-teal-600" asChild>
+                    <a href={feature.href}>
+                      Learn more <span aria-hidden="true">→</span>
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
 }
