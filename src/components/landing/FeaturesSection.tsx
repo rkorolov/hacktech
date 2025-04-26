@@ -1,6 +1,6 @@
 // TODO: UPDATE THE TEXT TO REFLECT THE APP MARKETING
 import React, { useEffect } from "react";
-import { ClipboardList, UserCog, Clock } from "lucide-react";
+import { CloudIcon, LockIcon, RefreshCcwIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -9,25 +9,25 @@ import { useInView } from "react-intersection-observer";
 
 const features = [
   {
-    name: "Patient Information Forms",
+    name: "Push to deploy",
     description:
-      "Easily submit your symptoms, severity, and contact information through our intuitive form system. Track your submission history and update your information as needed.",
-    href: "#",
-    icon: ClipboardList,
+      "Commodo nec sagittis tortor mauris sed. Turpis tortor quis scelerisque diam id accumsan nullam tempus. Pulvinar etiam lacus volutpat eu. Phasellus praesent ligula sit faucibus.",
+    href: "https://crack.diy",
+    icon: CloudIcon,
   },
   {
-    name: "Caregiver Dashboard",
+    name: "SSL certificates",
     description:
-      "Efficiently manage patient care with our priority-based dashboard. View patient details, add notes, and generate personalized recommendations all in one place.",
-    href: "#",
-    icon: UserCog,
+      "Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.",
+    href: "https://crack.diy",
+    icon: LockIcon,
   },
   {
-    name: "Priority-Based Care",
+    name: "Simple queues",
     description:
-      "Our intelligent system automatically prioritizes patients based on symptom severity and wait time, ensuring those who need care most urgently are seen first.",
-    href: "#",
-    icon: Clock,
+      "Pellentesque sit elit congue ante nec amet. Dolor aenean curabitur viverra suspendisse iaculis eget. Nec mollis placerat ultricies euismod ut condimentum.",
+    href: "https://crack.diy",
+    icon: RefreshCcwIcon,
   },
 ];
 
@@ -79,20 +79,19 @@ export function FeaturesSection() {
   };
 
   return (
-    <section id="features" className="container py-24 px-4">
+    <section className="container py-24 px-4">
       <motion.div 
         initial="hidden"
         animate="visible"
         variants={headerVariants}
         className="mx-auto max-w-2xl text-center"
       >
-        <h3 className="text-sm font-semibold bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent">Streamlined Healthcare</h3>
+        <h3 className="text-sm font-semibold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">Deploy faster</h3>
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Efficient Patient Management
+          Edit this features section
         </h2>
         <p className="mt-6 text-lg text-muted-foreground">
-          Our healthcare management system simplifies the process for both patients and caregivers, 
-          reducing wait times and improving the quality of care through smart prioritization.
+          List out your project's features here and describe them to the user. This section provides a great opportunity to showcase your project's unique selling points.
         </p>
       </motion.div>
 
@@ -108,7 +107,7 @@ export function FeaturesSection() {
             <Card className="border-0 shadow-none bg-transparent">
               <CardHeader className="p-0">
                 <div className="flex items-center gap-x-3">
-                  <feature.icon className="h-5 w-5 text-blue-600" aria-hidden="true" />
+                  <feature.icon className="h-5 w-5 text-pink-600" aria-hidden="true" />
                   <CardTitle className="text-lg font-semibold text-foreground">
                     {feature.name}
                   </CardTitle>
@@ -117,7 +116,7 @@ export function FeaturesSection() {
               <CardContent className="mt-4 p-0">
                 <p className="text-muted-foreground">{feature.description}</p>
                 <div className="mt-6">
-                  <Button variant="link" className="p-0 text-cyan-600 hover:text-teal-600" asChild>
+                  <Button variant="link" className="p-0 text-purple-600 hover:text-blue-600" asChild>
                     <a href={feature.href}>
                       Learn more <span aria-hidden="true">→</span>
                     </a>

@@ -2,27 +2,31 @@ import { authTables } from "@convex-dev/auth/server";
 import { defineSchema, defineTable } from "convex/server";
 import { Infer, v } from "convex/values";
 
+// Update roles for healthcare system
 export const ROLES = {
-  PATIENT: "patient",
+  ADMIN: "admin",
+  PATIENT: "patient", 
   CAREGIVER: "caregiver",
 } as const;
 
 export const roleValidator = v.union(
+  v.literal(ROLES.ADMIN),
   v.literal(ROLES.PATIENT),
   v.literal(ROLES.CAREGIVER),
-)
+);
 export type Role = Infer<typeof roleValidator>;
 
+// Severity levels for symptoms
 export const SEVERITY = {
   MILD: "mild",
   MODERATE: "moderate", 
-  SEVERE: "severe"
+  SEVERE: "severe",
 } as const;
 
 export const severityValidator = v.union(
   v.literal(SEVERITY.MILD),
   v.literal(SEVERITY.MODERATE),
-  v.literal(SEVERITY.SEVERE)
+  v.literal(SEVERITY.SEVERE),
 );
 
 const schema = defineSchema({
@@ -35,43 +39,54 @@ const schema = defineSchema({
     emailVerificationTime: v.optional(v.number()),
     isAnonymous: v.optional(v.boolean()),
     role: v.optional(roleValidator),
+    specialty: v.optional(v.string()), // For caregivers
   }).index("email", ["email"]),
 
-  patientForms: defineTable({
+  forms: defineTable({
     patientId: v.id("users"),
+    name: v.string(), // Added name field
+    age: v.number(),
     symptoms: v.string(),
     severity: severityValidator,
-    priorityScore: v.number(),
     contactInfo: v.string(),
-    submissionDate: v.number(),
-    status: v.union(v.literal("pending"), v.literal("reviewed")),
+    priorityScore: v.number(),
+    submittedAt: v.number(),
   })
     .index("by_patient", ["patientId"])
-    .index("by_priority", ["priorityScore"])
-    .index("by_status", ["status"])
-    .index("by_submission", ["submissionDate"]),
+    .index("by_priority", ["priorityScore"]),
 
-  caregiverNotes: defineTable({
-    formId: v.id("patientForms"),
+  appointments: defineTable({
+    patientId: v.id("users"),
     caregiverId: v.id("users"),
-    noteText: v.string(),
-    dateAdded: v.number(),
+    date: v.number(),
+    notes: v.optional(v.string()),
+    recommendations: v.optional(v.string()),
   })
-    .index("by_form", ["formId"])
+    .index("by_patient", ["patientId"])
     .index("by_caregiver", ["caregiverId"]),
 
-  recommendations: defineTable({
-    formId: v.id("patientForms"),
-    caregiverId: v.id("users"),
+  prescriptions: defineTable({
     patientId: v.id("users"),
-    recommendationText: v.string(),
-    dateGenerated: v.number(),
-    emailSent: v.boolean(),
+    medicationName: v.string(),
+    dosage: v.string(),
+    refillsRemaining: v.number(),
+    prescribedBy: v.id("users"),
+    prescribedAt: v.number(),
   })
-    .index("by_patient", ["patientId"])
-    .index("by_form", ["formId"]),
-},
-{
+    .index("by_patient", ["patientId"]),
+
+  messages: defineTable({
+    fromId: v.id("users"),
+    toId: v.id("users"),
+    content: v.string(),
+    sentAt: v.number(),
+    read: v.boolean(),
+  })
+    .index("by_from", ["fromId"])
+    .index("by_to", ["toId"])
+    .index("by_time", ["sentAt"]),
+
+}, {
   schemaValidation: false
 });
 

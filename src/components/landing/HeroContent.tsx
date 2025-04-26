@@ -18,7 +18,7 @@ export function HeroContent() {
           transition={{ duration: 0.5 }}
           className="mb-10 relative rounded-full p-[1px] overflow-hidden border border-transparent bg-white mx-auto lg:mx-0 w-fit"
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 animate-pulse opacity-50"></div>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse opacity-50"></div>
           <div className="relative bg-white dark:bg-gray-900 rounded-full py-2 px-4 text-center">
             <p className="text-xs font-medium">This project was cooked on <a href="https://crack.diy" className="hover:opacity-80 underline">crack.diy</a> 🎉</p>
           </div>
@@ -30,7 +30,7 @@ export function HeroContent() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter"
         >
-          Streamlined Healthcare Management
+          Change heading to match your purpose
         </motion.h1>
         
         <motion.p 
@@ -39,7 +39,7 @@ export function HeroContent() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-lg sm:text-xl text-gray-600 max-w-xl"
         >
-          A comprehensive system for patients to submit health information and caregivers to manage patient care efficiently. Prioritize patients, track symptoms, and deliver personalized recommendations.
+          This is the hero section of your application. Change this text to describe your application.
         </motion.p>
         
         <motion.div 
@@ -49,7 +49,7 @@ export function HeroContent() {
           className="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start"
         >
           <AuthButton trigger={<Button size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
-          <Link href="#features">
+          <Link href="https://crack.diy">
             <Button variant="ghost" size="lg">
               Learn more
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,8 +83,8 @@ export function HeroContent() {
               </svg>
             ))}
           </div>
-          <p className="text-sm font-medium">"Reduced our patient wait times by 40% in just one month."</p>
-          <p className="text-xs mt-1 text-gray-600 dark:text-gray-400">- Dr. Sarah J., Clinic Director</p>
+          <p className="text-sm font-medium">"The best tool we've integrated this year."</p>
+          <p className="text-xs mt-1 text-gray-600 dark:text-gray-400">- Alex R., Product Manager</p>
         </motion.div>
         
         <motion.div 
@@ -100,10 +100,10 @@ export function HeroContent() {
               </svg>
             ))}
           </div>
-          <p className="text-sm font-medium">"The priority system ensures critical patients are seen first."</p>
-          <p className="text-xs mt-1 text-gray-600 dark:text-gray-400">- Emma L., Nurse Practitioner</p>
+          <p className="text-sm font-medium">"Customer satisfaction has never been higher."</p>
+          <p className="text-xs mt-1 text-gray-600 dark:text-gray-400">- Lisa M., Customer Success</p>
         </motion.div>
       </motion.div>
     </div>
   );
-}
+} 

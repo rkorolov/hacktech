@@ -4,13 +4,12 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
 import { UserButton } from '../auth/UserButton';
 import { Button } from "@/components/ui/button";
-import { LucideIcon } from 'lucide-react';
 
 // Define menu item interface
 export interface MenuItem {
   label: string;
   href: string;
-  icon?: string | LucideIcon; // Updated to support both string and Lucide icons
+  icon?: string; // Optional icon
   section?: string; // Optional section grouping
 }
 
@@ -116,8 +115,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                   .filter(item => (item.section || 'General') === section)
                   .map((item, index) => {
                     const isActive = currentPath === item.href;
-                    const IconComponent = typeof item.icon !== 'string' ? item.icon : undefined;
-                    
                     return (
                       <li key={index}>
                         <Link 
@@ -128,7 +125,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                               : 'text-muted-foreground no-underline'
                           }`}
                         >
-                          {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
                           {item.label}
                         </Link>
                       </li>
