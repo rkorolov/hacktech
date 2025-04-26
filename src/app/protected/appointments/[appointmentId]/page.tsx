@@ -156,16 +156,16 @@ export default function AppointmentDetailsPage() {
   
   const handleCancelAppointment = async () => {
     setIsDeleting(true)
+    router.push("/protected/appointments")
+    
     try {
       await deleteAppointment({ 
         appointmentId: appointment._id
       })
       toast.success("Appointment cancelled successfully")
-      router.push("/protected/appointments")
     } catch (error) {
       console.error("Error cancelling appointment:", error)
       toast.error("Failed to cancel appointment")
-      setIsDeleting(false)
     }
   }
   

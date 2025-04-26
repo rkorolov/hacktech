@@ -111,3 +111,24 @@ export const setUserRole = mutation({
     return await ctx.db.get(userId);
   },
 });
+
+// Update caregiver profile
+export const updateCaregiverProfile = mutation({
+  args: {
+    name: v.string(),
+    specialty: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await getCurrentUser(ctx);
+    if (!user || user.role !== ROLES.CAREGIVER) {
+      throw new Error("Unauthorized");
+    }
+
+    await ctx.db.patch(user._id, {
+      name: args.name,
+      specialty: args.specialty,
+    });
+
+    return await ctx.db.get(user._id);
+  },
+});

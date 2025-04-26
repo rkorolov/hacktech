@@ -2,11 +2,12 @@
 
 import type { MenuItem } from "@/components/protected/Sidebar";
 import Sidebar from "@/components/protected/Sidebar";
+import { Header } from "@/components/protected/Header";
 import { useAuth } from "@/hooks/use-auth";
 import { AuthLoading, Authenticated, Unauthenticated } from "convex/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Loader2, FileText, Home, Users, MessageSquare, PillIcon, Calendar, Pill } from "lucide-react";
+import { Loader2, FileText, Home, Users, MessageSquare, PillIcon, Calendar, Pill, UserCog } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { ROLES } from "@/convex/schema";
@@ -30,6 +31,7 @@ export default function ProtectedLayout({
     { label: "Appointments", href: "/protected/appointments", section: "Healthcare", icon: "calendar" },
     { label: "Prescriptions", href: "/protected/prescriptions", section: "Healthcare", icon: "pill" },
     { label: "Messages", href: "/protected/messages", section: "Communication", icon: "message-square" },
+    { label: "Account", href: "/protected/account", section: "Settings", icon: "user-cog" },
     { label: "Home Page", href: "/", section: "Navigation" },
     { label: "Support", href: "https://vly.ai", section: "Support" },
     { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
@@ -37,10 +39,10 @@ export default function ProtectedLayout({
 
   const caregiverMenuItems: MenuItem[] = [
     { label: "Dashboard", href: "/protected/", section: "Main" },
-    { label: "Patients", href: "/protected/patients", section: "Healthcare", icon: "users" },
     { label: "Appointments", href: "/protected/appointments", section: "Healthcare", icon: "calendar" },
     { label: "Prescriptions", href: "/protected/prescriptions", section: "Healthcare", icon: "pill" },
     { label: "Messages", href: "/protected/messages", section: "Communication", icon: "message-square" },
+    { label: "Account", href: "/protected/account", section: "Settings", icon: "user-cog" },
     { label: "Home Page", href: "/", section: "Navigation" },
     { label: "Support", href: "https://vly.ai", section: "Support" },
     { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
@@ -75,9 +77,14 @@ export default function ProtectedLayout({
         </div>
       </AuthLoading>
       <Authenticated>
-        <Sidebar menuItems={menuItems} userEmail={user?.email} userName={user?.name}>
-          {children}
-        </Sidebar>
+        <div className="flex flex-col h-screen">
+          <Header />
+          <div className="flex-1 overflow-hidden">
+            <Sidebar menuItems={menuItems} userEmail={user?.email} userName={user?.name}>
+              {children}
+            </Sidebar>
+          </div>
+        </div>
       </Authenticated>
     </>
   );

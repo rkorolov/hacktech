@@ -69,10 +69,25 @@ export default function AppointmentsPage() {
       })
     }
 
+    const upcomingAppointments = appointments?.filter(app => app.date > Date.now()) || [];
+    const pastAppointments = appointments?.filter(app => app.date <= Date.now()) || [];
+
     return (
       <div className="container">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold tracking-tight">Your Appointments</h2>
+          
+          <Tabs 
+            value={statusFilter} 
+            onValueChange={(value) => setStatusFilter(value as "all" | "upcoming" | "past")}
+            className="w-auto"
+          >
+            <TabsList className="grid grid-cols-3 w-auto">
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+              <TabsTrigger value="past">Past</TabsTrigger>
+            </TabsList>
+          </Tabs>
         </div>
 
         <motion.div
@@ -99,83 +114,174 @@ export default function AppointmentsPage() {
               </CardContent>
             </Card>
           ) : (
-            <Card>
-              <CardHeader>
-                <CardTitle>Scheduled Appointments</CardTitle>
-                <CardDescription>
-                  View your upcoming and past appointments
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Date & Time</TableHead>
-                      <TableHead>Caregiver</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {appointments.map((appointment) => {
-                      const isPast = appointment.date < Date.now()
-                      
-                      return (
-                        <TableRow key={appointment._id}>
-                          <TableCell className="font-medium">
-                            <div className="flex flex-col">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="h-4 w-4 text-muted-foreground" />
-                                <span>{formatDate(appointment.date)}</span>
+            <div className="space-y-8">
+              {(statusFilter === "all" || statusFilter === "upcoming") && upcomingAppointments.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Upcoming Appointments</CardTitle>
+                    <CardDescription>
+                      Your scheduled appointments
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Date & Time</TableHead>
+                          <TableHead>Caregiver</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {upcomingAppointments.map((appointment) => (
+                          <TableRow key={appointment._id}>
+                            <TableCell className="font-medium">
+                              <div className="flex flex-col">
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                                  <span>{formatDate(appointment.date)}</span>
+                                </div>
+                                <div className="flex items-center gap-1 text-muted-foreground text-sm">
+                                  <Clock className="h-3 w-3" />
+                                  <span>{formatTime(appointment.date)}</span>
+                                </div>
                               </div>
-                              <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                                <Clock className="h-3 w-3" />
-                                <span>{formatTime(appointment.date)}</span>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-2">
+                                <User className="h-4 w-4 text-muted-foreground" />
+                                <span>
+                                  {appointment.caregiver?.name || "Unknown Caregiver"}
+                                  {appointment.caregiver?.specialty && (
+                                    <span className="text-muted-foreground text-sm block">
+                                      {appointment.caregiver.specialty}
+                                    </span>
+                                  )}
+                                </span>
                               </div>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <div className="flex items-center gap-2">
-                              <User className="h-4 w-4 text-muted-foreground" />
-                              <span>
-                                {appointment.caregiver?.name || "Unknown Caregiver"}
-                                {appointment.caregiver?.specialty && (
-                                  <span className="text-muted-foreground text-sm block">
-                                    {appointment.caregiver.specialty}
-                                  </span>
-                                )}
-                              </span>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            {isPast ? (
-                              <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">
-                                Completed
-                              </Badge>
-                            ) : (
+                            </TableCell>
+                            <TableCell>
                               <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                                 Upcoming
                               </Badge>
-                            )}
-                          </TableCell>
-                          <TableCell className="text-right">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="gap-1"
-                              onClick={() => router.push(`/protected/appointments/${appointment._id}`)}
-                            >
-                              <FileText className="h-4 w-4" />
-                              {isPast ? "View Details" : "Manage"}
-                            </Button>
-                          </TableCell>
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-1"
+                                onClick={() => router.push(`/protected/appointments/${appointment._id}`)}
+                              >
+                                <FileText className="h-4 w-4" />
+                                Manage
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              )}
+              
+              {(statusFilter === "all" || statusFilter === "past") && pastAppointments.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Past Appointments</CardTitle>
+                    <CardDescription>
+                      Your appointment history
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Date & Time</TableHead>
+                          <TableHead>Caregiver</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
-                      )
-                    })}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+                      </TableHeader>
+                      <TableBody>
+                        {pastAppointments.map((appointment) => (
+                          <TableRow key={appointment._id}>
+                            <TableCell className="font-medium">
+                              <div className="flex flex-col">
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                                  <span>{formatDate(appointment.date)}</span>
+                                </div>
+                                <div className="flex items-center gap-1 text-muted-foreground text-sm">
+                                  <Clock className="h-3 w-3" />
+                                  <span>{formatTime(appointment.date)}</span>
+                                </div>
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-2">
+                                <User className="h-4 w-4 text-muted-foreground" />
+                                <span>
+                                  {appointment.caregiver?.name || "Unknown Caregiver"}
+                                  {appointment.caregiver?.specialty && (
+                                    <span className="text-muted-foreground text-sm block">
+                                      {appointment.caregiver.specialty}
+                                    </span>
+                                  )}
+                                </span>
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">
+                                Completed
+                              </Badge>
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-1"
+                                onClick={() => router.push(`/protected/appointments/${appointment._id}`)}
+                              >
+                                <FileText className="h-4 w-4" />
+                                View Details
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              )}
+              
+              {statusFilter === "upcoming" && upcomingAppointments.length === 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>No upcoming appointments</CardTitle>
+                    <CardDescription>
+                      You don't have any upcoming appointments scheduled.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Your healthcare provider will schedule appointments for you after reviewing your health information.
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+              
+              {statusFilter === "past" && pastAppointments.length === 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>No past appointments</CardTitle>
+                    <CardDescription>
+                      You don't have any past appointment records.
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              )}
+            </div>
           )}
         </motion.div>
       </div>
@@ -201,6 +307,9 @@ export default function AppointmentsPage() {
         hour12: true
       })
     }
+    
+    const upcomingAppointments = allAppointments?.filter(app => app.date > Date.now()) || [];
+    const pastAppointments = allAppointments?.filter(app => app.date <= Date.now()) || [];
     
     return (
       <div className="container">
@@ -263,43 +372,27 @@ export default function AppointmentsPage() {
               </CardContent>
             </Card>
           ) : (
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  {statusFilter === "upcoming" ? "Upcoming Appointments" : 
-                   statusFilter === "past" ? "Past Appointments" : 
-                   "All Appointments"}
-                </CardTitle>
-                <CardDescription>
-                  {statusFilter === "upcoming" ? "Manage your upcoming appointments" : 
-                   statusFilter === "past" ? "View your past appointment history" : 
-                   "View and manage all your appointments"}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Date & Time</TableHead>
-                      <TableHead>Patient</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {allAppointments.length === 0 ? (
-                      <TableRow>
-                        <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
-                          {statusFilter === "upcoming" ? "No upcoming appointments scheduled." : 
-                           statusFilter === "past" ? "No past appointments found." : 
-                           "No appointments found."}
-                        </TableCell>
-                      </TableRow>
-                    ) : (
-                      allAppointments.map((appointment) => {
-                        const isPast = appointment.date < Date.now();
-                        
-                        return (
+            <div className="space-y-8">
+              {(statusFilter === "all" || statusFilter === "upcoming") && upcomingAppointments.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Upcoming Appointments</CardTitle>
+                    <CardDescription>
+                      Manage your upcoming appointments
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Date & Time</TableHead>
+                          <TableHead>Patient</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {upcomingAppointments.map((appointment) => (
                           <TableRow key={appointment._id}>
                             <TableCell className="font-medium">
                               <div className="flex flex-col">
@@ -327,15 +420,9 @@ export default function AppointmentsPage() {
                               </div>
                             </TableCell>
                             <TableCell>
-                              {isPast ? (
-                                <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">
-                                  Completed
-                                </Badge>
-                              ) : (
-                                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                                  Upcoming
-                                </Badge>
-                              )}
+                              <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                                Upcoming
+                              </Badge>
                             </TableCell>
                             <TableCell className="text-right">
                               <Button
@@ -345,17 +432,114 @@ export default function AppointmentsPage() {
                                 onClick={() => router.push(`/protected/appointments/${appointment._id}`)}
                               >
                                 <FileText className="h-4 w-4" />
-                                {isPast ? "View Details" : "Manage"}
+                                Manage
                               </Button>
                             </TableCell>
                           </TableRow>
-                        );
-                      })
-                    )}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              )}
+              
+              {(statusFilter === "all" || statusFilter === "past") && pastAppointments.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Past Appointments</CardTitle>
+                    <CardDescription>
+                      View your past appointment history
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Date & Time</TableHead>
+                          <TableHead>Patient</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {pastAppointments.map((appointment) => (
+                          <TableRow key={appointment._id}>
+                            <TableCell className="font-medium">
+                              <div className="flex flex-col">
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                                  <span>{formatDate(appointment.date)}</span>
+                                </div>
+                                <div className="flex items-center gap-1 text-muted-foreground text-sm">
+                                  <Clock className="h-3 w-3" />
+                                  <span>{formatTime(appointment.date)}</span>
+                                </div>
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-2">
+                                <User className="h-4 w-4 text-muted-foreground" />
+                                <span>
+                                  {appointment.patient?.name || "Unknown Patient"}
+                                  {appointment.patient?.email && (
+                                    <span className="text-muted-foreground text-sm block">
+                                      {appointment.patient.email}
+                                    </span>
+                                  )}
+                                </span>
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">
+                                Completed
+                              </Badge>
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-1"
+                                onClick={() => router.push(`/protected/appointments/${appointment._id}`)}
+                              >
+                                <FileText className="h-4 w-4" />
+                                View Details
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              )}
+              
+              {statusFilter === "upcoming" && upcomingAppointments.length === 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>No upcoming appointments</CardTitle>
+                    <CardDescription>
+                      You don't have any upcoming appointments scheduled.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Schedule appointments with patients by clicking the "New" button.
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+              
+              {statusFilter === "past" && pastAppointments.length === 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>No past appointments</CardTitle>
+                    <CardDescription>
+                      You don't have any past appointment records.
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              )}
+            </div>
           )}
         </motion.div>
       </div>

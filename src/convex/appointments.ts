@@ -141,7 +141,7 @@ export const getAppointmentById = query({
     if (!user) throw new Error("Unauthorized");
 
     const appointment = await ctx.db.get(args.appointmentId);
-    if (!appointment) throw new Error("Appointment not found");
+    if (!appointment) return null; // Return null instead of throwing error when appointment not found
 
     // Check authorization - allow either the patient or the assigned caregiver
     if (

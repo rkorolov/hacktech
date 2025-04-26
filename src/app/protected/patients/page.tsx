@@ -233,11 +233,11 @@ export default function PatientsPage() {
                       <Avatar className="h-10 w-10">
                         <AvatarImage src={patient.image} />
                         <AvatarFallback className="bg-blue-100 text-blue-600">
-                          {patient.name ? patient.name.charAt(0).toUpperCase() : "P"}
+                          {patient.latestForm?.name ? patient.latestForm.name.charAt(0).toUpperCase() : patient.name ? patient.name.charAt(0).toUpperCase() : "P"}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <CardTitle className="text-base">{patient.name || "Unnamed Patient"}</CardTitle>
+                        <CardTitle className="text-base">{patient.latestForm?.name || patient.name || "Anonymous Patient"}</CardTitle>
                         <CardDescription className="text-xs truncate max-w-[180px]">
                           {patient.email || "No email provided"}
                         </CardDescription>

@@ -12,7 +12,7 @@
   "static/chunks/06296_three_examples_jsm_b7e45c47._.js",
   "static/chunks/dabd5_react-reconciler_fee262cf._.js",
   "static/chunks/3c937_@react-three_fiber_dist_34687a72._.js",
-  "static/chunks/node_modules__pnpm_df52fe93._.js"
+  "static/chunks/node_modules__pnpm_5240190d._.js"
 ],
     source: "dynamic"
 });

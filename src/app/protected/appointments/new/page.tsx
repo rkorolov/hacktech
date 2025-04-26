@@ -42,7 +42,6 @@ import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Id } from "@/convex/_generated/dataModel"
 
-// Form validation schema
 const formSchema = z.object({
   patientId: z.string().min(1, "Please select a patient"),
   date: z.date({
@@ -56,7 +55,6 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-// Generate time slots for the select input
 const generateTimeSlots = () => {
   const slots = [];
   for (let hour = 9; hour <= 17; hour++) {
@@ -80,27 +78,22 @@ export default function NewAppointmentPage() {
   const { user, isLoading: authLoading } = useAuth()
   const [isSubmitting, setIsSubmitting] = useState(false)
   
-  // Get patient ID from URL if provided
   const patientIdFromUrl = searchParams.get("patient")
   
-  // Fetch all patients for the select input
   const patients = useQuery(api.users.getAllPatients)
   
-  // Create appointment mutation
   const createAppointment = useMutation(api.appointments.createAppointment)
   
-  // Initialize form with react-hook-form
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       patientId: patientIdFromUrl || "",
-      date: addDays(new Date(), 1), // Default to tomorrow
-      time: "9:00", // Default to 9:00 AM
+      date: addDays(new Date(), 1),
+      time: "9:00",
       notes: "",
     },
   })
   
-  // Check if user is authorized (must be a caregiver)
   if (authLoading) {
     return (
       <div className="flex items-center justify-center h-[80vh]">
@@ -119,17 +112,14 @@ export default function NewAppointmentPage() {
     )
   }
   
-  // Handle form submission
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true)
     
     try {
-      // Convert date and time to timestamp
       const [hours, minutes] = values.time.split(':').map(Number)
       const appointmentDate = new Date(values.date)
       const timestamp = setMinutes(setHours(appointmentDate, hours), minutes).getTime()
       
-      // Create appointment
       await createAppointment({
         patientId: values.patientId as Id<"users">,
         date: timestamp,
@@ -138,7 +128,6 @@ export default function NewAppointmentPage() {
       
       toast.success("Appointment scheduled successfully")
       
-      // Redirect to patient details page
       router.push(`/protected/patients/${values.patientId}`)
     } catch (error) {
       console.error("Error scheduling appointment:", error)
@@ -198,7 +187,7 @@ export default function NewAppointmentPage() {
                         <SelectContent>
                           {patients?.map((patient) => (
                             <SelectItem key={patient._id} value={patient._id}>
-                              {patient.name || "Unnamed Patient"}
+                              {patient.latestForm?.name || patient.name || "Anonymous Patient"}
                             </SelectItem>
                           ))}
                         </SelectContent>
