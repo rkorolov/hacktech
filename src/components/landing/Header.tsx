@@ -14,7 +14,7 @@ export function Header() {
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link href="https://www.crack.diy" className="text-2xl font-serif font-extrabold">
-          crack.diy
+          LumiViTA
         </Link>
         <nav>
           <AuthButton />

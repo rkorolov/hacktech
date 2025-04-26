@@ -62,7 +62,17 @@ export function Header() {
       className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
       <div className="container flex h-14 items-center justify-between">
-        {/* Left side - Account icons */}
+        {/* Left side - Company name */}
+        <div className="flex items-center">
+          <Link 
+            href="/protected" 
+            className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+          >
+            LumiVitA
+          </Link>
+        </div>
+
+        {/* Right side - Account icons */}
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -101,15 +111,7 @@ export function Header() {
           </DropdownMenu>
         </div>
 
-        {/* Right side - Company name */}
-        <div className="flex items-center">
-          <Link 
-            href="/protected" 
-            className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
-          >
-            LumiVitA
-          </Link>
-        </div>
+        
       </div>
 
       {/* Sign Out Confirmation Dialog */}

@@ -10,7 +10,7 @@ export function Footer() {
           </Link>
         </div>
         <p className="text-center text-sm text-foreground/50">
-          © {new Date().getFullYear()} crack.diy. All rights reserved.
+          © {new Date().getFullYear()} LumiViTA. All rights reserved.
         </p>
       </div>
     </footer>

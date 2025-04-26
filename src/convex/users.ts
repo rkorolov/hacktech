@@ -132,3 +132,22 @@ export const updateCaregiverProfile = mutation({
     return await ctx.db.get(user._id);
   },
 });
+
+//experimental
+export const updatePatientProfile = mutation({
+  args: {
+    name: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await getCurrentUser(ctx);
+    if (!user || user.role !== ROLES.PATIENT) {
+      throw new Error("Unauthorized");
+    }
+
+    await ctx.db.patch(user._id, {
+      name: args.name,
+    });
+
+    return await ctx.db.get(user._id);
+  },
+});
