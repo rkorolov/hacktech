@@ -10,8 +10,12 @@ import { Header } from "@/components/landing/Header";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { Footer } from "@/components/landing/Footer";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    console.log("CONVEX URL:", process.env.NEXT_PUBLIC_CONVEX_URL);
+  }, []);
   return (
     <motion.div 
       initial={{ opacity: 0 }}
