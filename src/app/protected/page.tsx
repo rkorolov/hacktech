@@ -137,7 +137,11 @@ export default function ProtectedPage() {
     
     return (
       <div className="container">
-        <h2 className="text-2xl font-bold mb-6 tracking-tight">Caregiver Dashboard</h2>
+        {/* Change the name to say hello, NAME */}
+        <h2 className="mt-8 text-6xl font-bold mb-8 tracking-tight">
+          <span className="text-[#001F54]">Hello, </span>
+          <span className="text-[#21A3DB]">Caregiver</span>
+        </h2>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -167,7 +171,7 @@ export default function ProtectedPage() {
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : patientFormsByStatus.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center text-muted-foreground">
               <Card className="p-8">
                 <CardTitle className="mb-2">No matching patients found</CardTitle>
                 <CardDescription>
@@ -273,7 +277,7 @@ export default function ProtectedPage() {
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
             ) : filteredPatients?.length === 0 ? (
-              <div className="text-center py-8 text-muted-foreground">
+              <div className="text-center text-muted-foreground">
                 <Card className="p-8">
                   <CardTitle className="mb-2">No patients found</CardTitle>
                   <CardDescription>
@@ -323,11 +327,20 @@ export default function ProtectedPage() {
         </motion.div>
       </div>
     );
-  }
-  
+  } 
+  // END OF CAREGIVER
+
+  /////////////////////////////////////////////////////////
+  //                  PATIENT DASHBOARD!!                //
+  /////////////////////////////////////////////////////////
   return (
     <div className="container">
-      <h2 className="text-2xl font-bold mb-6 tracking-tight">Patient Dashboard</h2>
+      {/* Change the name to say hello, NAME */}
+      {/* <h2 className="mt-8 text-4xl font-bold mb-6 tracking-tight">Hello, Patient</h2> */}
+      <h2 className="mt-8 text-6xl font-bold mb-8 tracking-tight">
+        <span className="text-[#001F54]">Hello, </span>
+        <span className="text-[#21A3DB]">Patient</span>
+      </h2>
       
       <motion.div
         initial={{ opacity: 0, y: 20 }}
