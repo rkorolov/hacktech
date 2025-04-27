@@ -14,7 +14,7 @@ export const resendOTP = Email({
     console.log("[DEBUG] Sending verification code:", token, "to:", email); // <-- ADD THIS
     const resend = new ResendAPI(provider.apiKey);
     const { error } = await resend.emails.send({
-      from: "My App <onboarding@resend.dev>",
+      from: 'noreply@lumivita.co',
       to: [email],
       subject: `Sign in to My App`,
       text: "Your code is " + token,

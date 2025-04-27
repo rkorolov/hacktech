@@ -101,7 +101,7 @@ export function SetRoleForm() {
     >
       <Card>
         <CardHeader>
-          <CardTitle>Welcome to Clinic Connect</CardTitle>
+          <CardTitle>Welcome to LumiViTA</CardTitle>
           <CardDescription>
             Please select your role to continue
           </CardDescription>
