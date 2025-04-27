@@ -22,7 +22,6 @@ import type * as generators_createUsers from "../generators/createUsers.js";
 import type * as http from "../http.js";
 import type * as messages from "../messages.js";
 import type * as prescriptions from "../prescriptions.js";
-import type * as query from "../query.js";
 import type * as users from "../users.js";
 
 /**
@@ -43,7 +42,6 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   messages: typeof messages;
   prescriptions: typeof prescriptions;
-  query: typeof query;
   users: typeof users;
 }>;
 export declare const api: FilterApi<
