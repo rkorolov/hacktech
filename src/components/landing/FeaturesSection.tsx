@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { CloudIcon, LockIcon, RefreshCcwIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { AuthButton } from "../auth/AuthButton";
+import ChatbotPopup from "./chatbotPopup";
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls smoothly to the top of the page
@@ -35,34 +36,26 @@ const features = [
 export function FeaturesSection() {
   return (
     
-      <div>
-        <img 
+      <div >
+        {/* <img 
           src="../../../../lumivitaDesigns/Lumi.png" 
           alt="small image"
           style={{
             position: "fixed",  // Keep the image fixed while scrolling
             bottom: "20px",     // Adjust this value to set the distance from the bottom
             right: "20px",      // Adjust this value to set the distance from the right
-            width: "50px",     // Set the size of the image
+            width: "50px",      // Set the size of the image
             height: "auto",     // Maintain aspect ratio
             zIndex: "9999",     // Ensure it stays on top of other elements
           }}
-          onClick={scrollToTop}
-        />
-          <div 
-  style={{
-    position: "fixed",  // Fixes the position of the button
-    top: "20px",        // Distance from the top
-    right: "20px",      // Distance from the right
-    // cursor: 'pointer',
-    zIndex: 9999,
-  }}
-
->
-  <AuthButton 
+          onClick={scrollToTop}/> */}
+        
+        <ChatbotPopup />
+          <div>
+  {/* < AuthButton 
     trigger={<Button size="lg">Sign In</Button>} 
     dashboardTrigger={<Button size="lg">Dashboard</Button>} 
-  />
+     /> */}
 </div>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"></link>
 

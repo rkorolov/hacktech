@@ -25,7 +25,7 @@ export default function ChatbotPopup() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4">
+    <div className="fixed bottom-10 right-4">
       {isOpen ? (
         <div className="bg-white shadow-xl border rounded-lg p-4 w-80 h-96 flex flex-col">
           <div className="flex-1 overflow-y-auto space-y-2 mb-2">
@@ -52,11 +52,34 @@ export default function ChatbotPopup() {
         </div>
       ) : null}
 
+      
+
       <button
-        className="bg-blue-500 text-white p-4 rounded-full shadow-lg flex"
-        onClick={() => setIsOpen((prev) => !prev)}
+        className=" text-white p-4 rounded-full shadow-lg flex fixed"
+        onClick={() => {
+          setIsOpen((prev) => {
+            const newIsOpen = !prev;
+            if (newIsOpen && messages.length === 0) {
+              setMessages([
+                { from: "bot", text: "Hi there! I'm Lumi, your assistant. How can I help you today?" }
+              ]);
+            }
+            return newIsOpen;
+          });
+        }}
       >
-        <img src="/lumivitaDesigns/Lumi.png" className="max-w-20 max-h-20" />
+        {/* <img src="/lumivitaDesigns/Lumi.png" className="max-w-20 max-h-20" /> */}
+        <img 
+          src="../../../../lumivitaDesigns/Lumi.png" 
+          alt="small image"
+          style={{
+            position: "fixed",  // Keep the image fixed while scrolling
+            bottom: "20px",     // Adjust this value to set the distance from the bottom
+            right: "20px",      // Adjust this value to set the distance from the right
+            width: "50px",     // Set the size of the image
+            height: "auto",     // Maintain aspect ratio
+            zIndex: "9999",     // Ensure it stays on top of other elements
+          }}/>
       </button>
     </div>
   );
