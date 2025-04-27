@@ -97,15 +97,20 @@ export function SetRoleForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-md mx-auto"
+      className="w-full max-w-md mx-auto flex flex-col items-center"
     >
-      <Card>
+      <Card className="min-w-5/6 h-full">
         <CardHeader>
+          <div className="flex flex-col items-center gap-2">
+          <img src="/lumivitaDesigns/logo 2.png" width="40" height="40"/>
           <CardTitle>Welcome to LumiViTA</CardTitle>
+          
           <CardDescription>
             Please select your role to continue
           </CardDescription>
+          </div>
         </CardHeader>
+        <div className="flex flex-col items-center text-center w-full justify-center">
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -113,8 +118,8 @@ export function SetRoleForm() {
                 control={form.control}
                 name="role"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Role</FormLabel>
+                  <FormItem className="flex justify-center w-full">
+                    {/* <FormLabel>Your Role</FormLabel> */}
                     <Select 
                       onValueChange={field.onChange} 
                       defaultValue={field.value}
@@ -126,23 +131,23 @@ export function SetRoleForm() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value={ROLES.PATIENT} className="flex items-center gap-2">
-                          <div className="flex items-center gap-2">
+                        <SelectItem value={ROLES.PATIENT} className="flex items-cente w-full gap-2">
+                         <div className="flex items-center gap-2">
                             <User className="h-4 w-4" />
                             <span>Patient</span>
                           </div>
                         </SelectItem>
-                        <SelectItem value={ROLES.CAREGIVER} className="flex items-center gap-2">
-                          <div className="flex items-center gap-2">
+                        <SelectItem value={ROLES.CAREGIVER} className="flex justify-center w-full items-center gap-2">
+                          <div className="flex items-center justify-center gap-2">
                             <UserCog className="h-4 w-4" />
                             <span>Healthcare Provider</span>
                           </div>
                         </SelectItem>
                       </SelectContent>
                     </Select>
-                    <FormDescription>
+                    {/* <FormDescription>
                       Select whether you are a patient seeking care or a healthcare provider.
-                    </FormDescription>
+                    </FormDescription> */}
                     <FormMessage />
                   </FormItem>
                 )}
@@ -173,7 +178,7 @@ export function SetRoleForm() {
               
               <Button 
                 type="submit" 
-                className="w-full" 
+                className="w-full bg-[#034078] text-white" 
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -188,6 +193,7 @@ export function SetRoleForm() {
             </form>
           </Form>
         </CardContent>
+        </div>
       </Card>
     </motion.div>
   )

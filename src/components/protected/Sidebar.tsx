@@ -100,7 +100,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         {/* Logo in Sidebar */}
         <div className="p-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-serif font-medium no-underline text-inherit flex items-center gap-2">
-          <img src="/house.svg" alt="House" className='w-6 h-6'/>
+          <img src="/lumivitaDesigns/logo 2.png" alt="Logo" className='w-6 h-6'/>
           <span className={poppins.className}>{logoName}</span>
           </Link>
           {/* Close button - Only visible on mobile */}

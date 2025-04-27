@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "lumivita.co",
   description: "Bringing light into your life",
   icons: {
-    icon: "/Lumi.png"
+    icon: "/lumivitaDesigns/Lumi.png",
 
   },
 };
