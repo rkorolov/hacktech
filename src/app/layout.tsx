@@ -14,10 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cooked on crack.diy",
-  description: "This app was cooked on crack.diy",
+  title: "lumivita.co",
+  description: "Bringing light into your life",
   icons: {
-    icon: "/favicon_crack_light.png",
+    icon: "/Lumi.png"
+
   },
 };
 
