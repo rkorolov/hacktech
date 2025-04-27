@@ -211,12 +211,13 @@ export default function FormDetailsPage() {
                 </CardDescription>
               </div>
               
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 {getSeverityBadge(form.severity)}
                 <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                   Priority: {form.priorityScore.toFixed(1)}
                 </Badge>
-              </div>
+              </div> */}
+
             </div>
           </CardHeader>
           
@@ -258,14 +259,14 @@ export default function FormDetailsPage() {
                   {getSeverityBadge(form.severity)}
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="font-medium">Priority Score:</p>
+                  {/* <p className="font-medium">Priority Score:</p>
                   <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                     {form.priorityScore.toFixed(1)}
-                  </Badge>
+                  </Badge> */}
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">
+                {/* <p className="text-sm text-muted-foreground mt-2">
                   Priority scores are calculated based on severity and wait time. Higher scores indicate higher priority.
-                </p>
+                </p> */}
               </div>
             </div>
           </CardContent>

@@ -89,7 +89,7 @@ export function AuthButton({
     <div>
       <Authenticated>
         {dashboardTrigger ? 
-          <div onClick={() => window.location.href = "/protected"}>
+          <div onClick={() => window.location.href = "/protected/set-role"}>
             {dashboardTrigger}
           </div> :
           <Button>
