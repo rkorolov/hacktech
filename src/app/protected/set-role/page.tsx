@@ -42,11 +42,13 @@ export default function SetRolePage() {
   // Show the role selection form
   return (
     <div className=" flex items-center justify-center min-h-screen container min-w-screen py-12">
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
+        
         {/* <h2 className="text-2xl font-bold mb-6 tracking-tight text-center">Set Your Role</h2> */}
         
         <SetRoleForm />
