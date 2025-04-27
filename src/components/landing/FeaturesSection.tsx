@@ -1,11 +1,6 @@
 // TODO: UPDATE THE TEXT TO REFLECT THE APP MARKETING
 import React, { useEffect } from "react";
 import { CloudIcon, LockIcon, RefreshCcwIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 const features = [
   {
@@ -32,101 +27,276 @@ const features = [
 ];
 
 export function FeaturesSection() {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <section className="container py-24 px-4">
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={headerVariants}
-        className="mx-auto max-w-2xl text-center"
-      >
-        <h3 className="text-sm font-semibold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">Deploy faster</h3>
-        <h2 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Edit this features section
-        </h2>
-        <p className="mt-6 text-lg text-muted-foreground">
-          List out your project's features here and describe them to the user. This section provides a great opportunity to showcase your project's unique selling points.
-        </p>
-      </motion.div>
+      <div>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"></link>
 
-      <motion.div 
-        ref={ref}
-        initial="hidden"
-        animate={controls}
-        variants={containerVariants}
-        className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mt-24 lg:max-w-none lg:grid-cols-3"
-      >
-        {features.map((feature) => (
-          <motion.div key={feature.name} variants={itemVariants}>
-            <Card className="border-0 shadow-none bg-transparent">
-              <CardHeader className="p-0">
-                <div className="flex items-center gap-x-3">
-                  <feature.icon className="h-5 w-5 text-pink-600" aria-hidden="true" />
-                  <CardTitle className="text-lg font-semibold text-foreground">
-                    {feature.name}
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="mt-4 p-0">
-                <p className="text-muted-foreground">{feature.description}</p>
-                <div className="mt-6">
-                  <Button variant="link" className="p-0 text-purple-600 hover:text-blue-600" asChild>
-                    <a href={feature.href}>
-                      Learn more <span aria-hidden="true">→</span>
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
+        {/* About */} 
+        <div style={{display: "flex", justifyContent: "space-between", paddingTop: "800px",}}>
+        <div style={{display: "flex"}}>
+          <div>
+              <img src="../../../../lumivitaDesigns/doctor.png" alt="image of doctor"
+                style={{
+                  width: "300px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  
+              }}/>
+          </div>
+          <div>
+            <img src="../../../../lumivitaDesigns/pills.png" alt="image of pills"
+              style={{
+                paddingTop:"350px",
+                width: "300px", // Set the size of the image
+                height: "auto", // Maintain aspect ratio
+                objectFit: "contain", // Ensure the image doesn't distort
+                display: "inline-block", // Keep the image inline with text
+                // marginLeft:"20"
+            }}/>
+          </div>
+            </div>
+          <div style={{fontFamily: "Poppins", margin: 0, fontSize: "25px", flexDirection: "column", marginRight:"-50px", textAlign:"right", right: "-40px", position:"relative"}}>
+            <p style={{fontWeight: "700", position:"relative"}}>About LumiViTA</p>
+            <p style={{fontSize: "56px", fontWeight: "700", position:"relative"}}>Clarity and vitality are <br />the heart of better <br />healthcare</p>
+            <p style={{fontSize: "25px"}}>At LumiViTA, we empower patients and caregivers<br />
+              through seamless, technology-driven solutions <br />
+                that prioritize connection, insight, and personalized <br />
+                care. By combining the illuminating power of <br />
+                innovation with a deep commitment to life and <br />
+                wellness, LumiViTA is redefining the future of healthcare <br />
+                — making it clearer, smarter, and more human.</p>
+            </div>
+          
+            
+          </div>
+
+        {/* Services */} 
+        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"800px"}}>
+          
+          <div >
+            <p style={{fontSize:"25px", fontWeight:"600"}}>Our Services</p>
+
+            <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+            <div style={{position:"relative"}}>
+              <p style={{fontSize:"40px", fontWeight:"600"}}>Appointment Management</p>
+              <p style={{fontSize:"22px"}}>Caregivers can manage and create appointments</p>
+            </div>
+
+            <div>
+            <span style={{
+                  position: "relative",
+                  left: "100%",
+                  transform: "translateX(-50%)",
+                  display: "inline-block",
+                  width: "0",
+                  height: "0",
+                  borderTop: "15px solid transparent",
+                  borderBottom: "15px solid transparent",
+                  borderLeft: "20px solid black",
+                  top: "50%",
+                }}></span>
+            </div>
+          </div>
+
+
+          <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid black" }} />
+
+          <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+            <div style={{position:"relative"}}>
+              <p style={{fontSize:"40px", fontWeight:"600"}}>Prescription Management</p>
+              <p style={{fontSize:"22px"}}>Caregivers can prescribe appropriate medication</p>
+            </div>
+            <div>
+              <span style={{
+                  position: "relative",
+                  left: "100%",
+                  transform: "translateX(-50%)",
+                  display: "inline-block",
+                  width: "0",
+                  height: "0",
+                  borderTop: "15px solid transparent",
+                  borderBottom: "15px solid transparent",
+                  borderLeft: "20px solid black",
+                  top: "50%",
+                }}></span>
+            </div>
+          </div>   
+
+          <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid black" }} />
+
+          <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+            <div style={{position:"relative"}}>
+              <p style={{fontSize:"40px", fontWeight:"600"}}>Patient-Caregiver Matching</p>
+              <p style={{fontSize:"22px"}}>Pairing patients to caregivers based on compatibility</p>
+            </div>
+            <div>
+              <span style={{
+                  position: "relative",
+                  left: "100%",
+                  transform: "translateX(-50%)",
+                  display: "inline-block",
+                  width: "0",
+                  height: "0",
+                  borderTop: "15px solid transparent",
+                  borderBottom: "15px solid transparent",
+                  borderLeft: "20px solid black",
+                  top: "50%",
+                }}></span>
+            </div>
+          </div>
+          <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid black"}} />
+
+
+        <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+          <div style={{position:"relative"}}>
+          <p style={{fontSize:"40px", fontWeight:"600"}}>24/7 Customer Service</p>
+          <p style={{fontSize:"22px"}}>Lumi chatbot available 24/7</p>
+          </div>
+          <div>
+            <span style={{
+                position: "relative",
+                left: "100%",
+                transform: "translateX(-50%)",
+                display: "inline-block",
+                width: "0",
+                height: "0",
+                borderTop: "15px solid transparent",
+                borderBottom: "15px solid transparent",
+                borderLeft: "20px solid black",
+                top: "50%",
+              }}></span>
+          </div>
+          </div>
+          </div>
+
+
+          <div>
+            
+        <img src="../../../../lumivitaDesigns/bear.png" alt="image of bear"
+                style={{
+                  width: "500px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  position:"relative",
+                  left:"50px"
+                  
+              }}/>
+        </div>
+        </div>
+        
+
+        {/* Creators */}
+        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", flexDirection: "column", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"800px"}}>
+          <p style={{fontSize:"25px", fontWeight:"600"}}>The Creators</p>
+          <p style={{fontSize:"56px", fontWeight:"600"}}>Four CSE TAs from the <br />Univeristy of Washington</p>
+          <p style={{fontSize:"25px"}}>The four of us originally met as teaching assistants for an introductory Java course at UW. <br />
+          One of the assignments for the course was a patient prioritizing program that focused on <br />
+          conditionals  and user input. From that assignment, we came to realize assigning priority<br />
+          scores was a lot more nuanced than we realized. We decided to come together to build this<br />
+          application, and help those in need.</p>
+        </div>
+        <div style={{display:"flex"}}>
+        <div style={{display: "flex", 
+                    justifyContent: "space-between", 
+                    alignItems: "center",
+                    marginBottom: "20px"}}>
+          <div>
+            <img src="../../../../lumivitaDesigns/ruslana.png" alt="image of ruslana"
+                style={{
+                  width: "300px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  position:"relative",
+                }}/>
+          </div>
+          <div>
+            <img src="../../../../lumivitaDesigns/hanna.png" alt="image of hanna"
+              style={{
+                width: "300px", // Set the size of the image
+                height: "auto", // Maintain aspect ratio
+                objectFit: "contain", // Ensure the image doesn't distort
+                display: "inline-block", // Keep the image inline with text
+                position:"relative",
+              }}/>
+
+          </div>
+          <div style={{display: "flex", 
+                    justifyContent: "space-between", 
+                    alignItems: "center",
+                    marginBottom: "20px"}}>
+          <div>
+            <img src="../../../../lumivitaDesigns/nicole.png" alt="image of nicole"
+                style={{
+                  width: "300px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  position:"relative",
+                }}/>
+          </div>
+          <div>
+            <img src="../../../../lumivitaDesigns/alice.png" alt="image of alice"
+              style={{
+                width: "300px", // Set the size of the image
+                height: "auto", // Maintain aspect ratio
+                objectFit: "contain", // Ensure the image doesn't distort
+                display: "inline-block", // Keep the image inline with text
+                position:"relative",
+              }}/>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style={{display:"flex"}}>
+      <div style={{display: "flex", 
+                  justifyContent: "space-between", 
+                  alignItems: "center",
+                  marginBottom: "20px"}}>
+        <div>
+          <p>
+          Ruslana Korolov</p>
+          <p>
+          Backend/Frontend Engineer
+          </p>
+        </div>
+        <div>
+          <p>Hanna Pan </p>
+          <p>UI/UX Designer</p>
+
+        </div>
+        <div style={{display: "flex", 
+                  justifyContent: "space-between", 
+                  alignItems: "center",
+                  marginBottom: "20px"}}>
+        <div>
+          <p>Nicole Ham</p>
+          <p>Backend/Frontend Engineer</p>
+        </div>
+        <div>
+          <p>Alice Zhu</p>
+          <p>Backend/Frontend Engineer</p>
+
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
   );
 }
