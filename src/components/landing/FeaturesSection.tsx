@@ -1,11 +1,6 @@
 // TODO: UPDATE THE TEXT TO REFLECT THE APP MARKETING
 import React, { useEffect } from "react";
 import { CloudIcon, LockIcon, RefreshCcwIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 const features = [
   {
@@ -33,12 +28,11 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    // <section className="about">
-      <div style={{display: "flex", flexDirection: "column", height:"300px"}}>
+      <div>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"></link>
 
         {/* About */} 
-        <div style={{display: "flex", justifyContent:"flex-end", fontFamily: "Poppins", margin: 0, fontSize: "25px", flexDirection: "column", marginRight:"-50px", textAlign:"right", right: "-400px", paddingTop: "350px"}}>
+        <div style={{display: "flex", justifyContent:"flex-end", fontFamily: "Poppins", margin: 0, fontSize: "25px", flexDirection: "column", marginRight:"-50px", textAlign:"right", right: "-400px", paddingTop: "800px"}}>
           <p style={{fontWeight: "700", }}>About LumiViTA</p>
           <p style={{fontSize: "56px", fontWeight: "700"}}>Clarity and vitality are <br />the heart of better <br />healthcare</p>
           <p style={{fontSize: "25px"}}>At LumiViTA, we empower patients and caregivers<br />
@@ -51,7 +45,7 @@ export function FeaturesSection() {
           </div>
 
         {/* Services */} 
-        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", flexDirection: "column", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"300px"}}>
+        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", flexDirection: "column", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"800px"}}>
           <p style={{fontSize:"25px", fontWeight:"600"}}>Our Services</p>
           <div style={{position:"relative"}}>
             <p style={{fontSize:"40px", fontWeight:"600"}}>Appointment Management</p>
@@ -127,7 +121,7 @@ export function FeaturesSection() {
         
 
         {/* Creators */}
-        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", flexDirection: "column", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"300px"}}>
+        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", flexDirection: "column", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"800px"}}>
           <p style={{fontSize:"25px", fontWeight:"600"}}>The Creators</p>
           <p style={{fontSize:"56px", fontWeight:"600"}}>Four CSE TAs from the <br />Univeristy of Washington</p>
           <p style={{fontSize:"25px"}}>The four of us originally met as teaching assistants for an introductory Java course at UW. <br />
