@@ -32,9 +32,9 @@ export default function ProtectedLayout({
     { label: "Prescriptions", href: "/protected/prescriptions", section: "Healthcare", icon: "pill" },
     { label: "Messages", href: "/protected/messages", section: "Communication", icon: "message-square" },
     { label: "Account", href: "/protected/account", section: "Settings", icon: "user-cog" },
-    { label: "Home Page", href: "/", section: "Navigation" },
-    { label: "Support", href: "https://vly.ai", section: "Support" },
-    { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
+    // { label: "Home Page", href: "/", section: "Navigation" },
+    // { label: "Support", href: "https://vly.ai", section: "Support" },
+    // { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
   ];
 
   const caregiverMenuItems: MenuItem[] = [
@@ -43,13 +43,21 @@ export default function ProtectedLayout({
     { label: "Prescriptions", href: "/protected/prescriptions", section: "Healthcare", icon: "pill" },
     { label: "Messages", href: "/protected/messages", section: "Communication", icon: "message-square" },
     { label: "Account", href: "/protected/account", section: "Settings", icon: "user-cog" },
-    { label: "Home Page", href: "/", section: "Navigation" },
-    { label: "Support", href: "https://vly.ai", section: "Support" },
-    { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
+    // { label: "Home Page", href: "/", section: "Navigation" },
+    // { label: "Support", href: "https://vly.ai", section: "Support" },
+    // { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
   ];
 
   // Select menu items based on user role
-  const menuItems = user?.role === ROLES.CAREGIVER ? caregiverMenuItems : patientMenuItems;
+
+
+  const menuItems = user?.role === ROLES.CAREGIVER
+  ? caregiverMenuItems
+  : user?.role === ROLES.PATIENT
+    ? patientMenuItems
+    : []; // ➡️ empty array if neither
+
+  const visibility = menuItems.length !== 0;
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -80,9 +88,9 @@ export default function ProtectedLayout({
         <div className="flex flex-col h-screen">
           {/* <Header /> */}
           <div className="flex-1 overflow-hidden">
-            <Sidebar menuItems={menuItems} userEmail={user?.email} userName={user?.name}>
-              {children}
-            </Sidebar>
+          <Sidebar menuItems={menuItems} userEmail={user?.email} userName={user?.name} visibility={visibility}>
+            {children}
+          </Sidebar>
           </div>
         </div>
       </Authenticated>
