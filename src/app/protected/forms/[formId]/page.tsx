@@ -182,114 +182,117 @@ export default function FormDetailsPage() {
   
   // Otherwise, show the form details
   return (
-    <div className="container max-w-4xl">
-      <div className="mb-6">
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="gap-1" 
-          onClick={() => router.back()}
+    <div className="container min-h-screen max-w-screen flex justify-center items-center">
+      <div className="container max-w-4xl ">
+        <div className="mb-6">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="gap-1" 
+            onClick={() => router.back()}
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back
+          </Button>
+        </div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </Button>
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Card>
-          <CardHeader className="pb-3">
-            <div className="flex justify-between items-start">
+          <Card>
+            <CardHeader className="pb-3">
+              <div className="flex justify-between items-start">
+                <div>
+                  <CardTitle className="text-2xl">Health Form Details</CardTitle>
+                  <CardDescription className="flex items-center gap-1 mt-1">
+                    <Calendar className="h-4 w-4" />
+                    Submitted on {formatDate(form.submittedAt)}
+                  </CardDescription>
+                </div>
+                
+                {/* <div className="flex items-center gap-2">
+                  {getSeverityBadge(form.severity)}
+                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                    Priority: {form.priorityScore.toFixed(1)}
+                  </Badge>
+                </div> */}
+
+              </div>
+            </CardHeader>
+            
+            <CardContent className="space-y-6">
               <div>
-                <CardTitle className="text-2xl">Health Form Details</CardTitle>
-                <CardDescription className="flex items-center gap-1 mt-1">
-                  <Calendar className="h-4 w-4" />
-                  Submitted on {formatDate(form.submittedAt)}
-                </CardDescription>
+                <h3 className="text-lg font-medium mb-2">Patient Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">Name</p>
+                    <p>{form.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">Age</p>
+                    <p>{form.age}</p>
+                  </div>
+                  <div className="md:col-span-2">
+                    <p className="text-sm font-medium text-muted-foreground">Contact Information</p>
+                    <p>{form.contactInfo}</p>
+                  </div>
+                </div>
               </div>
               
-              <div className="flex items-center gap-2">
-                {getSeverityBadge(form.severity)}
-                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                  Priority: {form.priorityScore.toFixed(1)}
-                </Badge>
-              </div>
-            </div>
-          </CardHeader>
-          
-          <CardContent className="space-y-6">
-            <div>
-              <h3 className="text-lg font-medium mb-2">Patient Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Name</p>
-                  <p>{form.name}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Age</p>
-                  <p>{form.age}</p>
-                </div>
-                <div className="md:col-span-2">
-                  <p className="text-sm font-medium text-muted-foreground">Contact Information</p>
-                  <p>{form.contactInfo}</p>
+              <Separator />
+              
+              <div>
+                <h3 className="text-lg font-medium mb-2">Symptoms</h3>
+                <div className="p-4 bg-muted/50 rounded-lg">
+                  <p className="whitespace-pre-wrap">{form.symptoms}</p>
                 </div>
               </div>
-            </div>
-            
-            <Separator />
-            
-            <div>
-              <h3 className="text-lg font-medium mb-2">Symptoms</h3>
-              <div className="p-4 bg-muted/50 rounded-lg">
-                <p className="whitespace-pre-wrap">{form.symptoms}</p>
-              </div>
-            </div>
-            
-            <Separator />
-            
-            <div>
-              <h3 className="text-lg font-medium mb-2">Severity Assessment</h3>
-              <div className="p-4 bg-muted/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-2">
-                  <p className="font-medium">Reported Severity:</p>
-                  {getSeverityBadge(form.severity)}
+              
+              <Separator />
+              
+              <div>
+                <h3 className="text-lg font-medium mb-2">Severity Assessment</h3>
+                <div className="p-4 bg-muted/50 rounded-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium">Reported Severity:</p>
+                    {getSeverityBadge(form.severity)}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {/* <p className="font-medium">Priority Score:</p>
+                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                      {form.priorityScore.toFixed(1)}
+                    </Badge> */}
+                  </div>
+                  {/* <p className="text-sm text-muted-foreground mt-2">
+                    Priority scores are calculated based on severity and wait time. Higher scores indicate higher priority.
+                  </p> */}
                 </div>
-                <div className="flex items-center gap-2">
-                  <p className="font-medium">Priority Score:</p>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                    {form.priorityScore.toFixed(1)}
-                  </Badge>
-                </div>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Priority scores are calculated based on severity and wait time. Higher scores indicate higher priority.
-                </p>
               </div>
-            </div>
-          </CardContent>
-          
-          <CardFooter className="flex justify-between">
-            <Button 
-              variant="outline" 
-              onClick={() => router.push("/protected/forms")}
-            >
-              Back to Forms
-            </Button>
+            </CardContent>
             
-            {isPatientOwner && (
+            <CardFooter className="flex justify-between">
               <Button 
-                onClick={() => setIsEditing(true)}
-                className="gap-1"
+                variant="outline" 
+                onClick={() => router.push("/protected/forms")}
               >
-                <Edit className="h-4 w-4" />
-                Edit Form
+                Back to Forms
               </Button>
-            )}
-          </CardFooter>
-        </Card>
-      </motion.div>
+              
+              {isPatientOwner && (
+                <Button 
+                  onClick={() => setIsEditing(true)}
+                  className="gap-1"
+                >
+                  <Edit className="h-4 w-4" />
+                  Edit Form
+                </Button>
+              )}
+            </CardFooter>
+          </Card>
+        </motion.div>
+      </div>
     </div>
   )
 }

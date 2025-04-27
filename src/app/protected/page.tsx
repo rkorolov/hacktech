@@ -348,7 +348,7 @@ export default function ProtectedPage() {
     <div className="container">
       {/* Change the name to say hello, NAME */}
       {/* <h2 className="mt-8 text-4xl font-bold mb-6 tracking-tight">Hello, Patient</h2> */}
-      <h2 className="mt-8 text-6xl font-bold mb-8 tracking-tight">
+      <h2 className="mt-8 text-6xl font-medium mb-8 tracking-tight">
         <span className="text-[#001F54]">Hello, </span>
         <span className="text-[#21A3DB]">{ name }</span>
       </h2>

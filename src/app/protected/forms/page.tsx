@@ -154,7 +154,7 @@ export default function FormsPage() {
                     <TableHead>Date Submitted</TableHead>
                     <TableHead>Symptoms</TableHead>
                     <TableHead>Severity</TableHead>
-                    <TableHead>Priority Score</TableHead>
+                    {/* <TableHead>Priority Score</TableHead> */}
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -170,9 +170,9 @@ export default function FormsPage() {
                       <TableCell>
                         {getSeverityBadge(form.severity)}
                       </TableCell>
-                      <TableCell>
+                      {/* <TableCell>
                         {form.priorityScore.toFixed(1)}
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
                           <Button
