@@ -36,7 +36,7 @@ const defaultMenuItems: MenuItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: 'dashboard', section: 'Main' },
   { label: 'Profile', href: '/profile', icon: 'person', section: 'Main' },
   { label: 'Settings', href: '/settings', icon: 'settings', section: 'System' },
-  { label: 'Messages', href: '/messages', icon: 'mail', section: 'System' },
+  // { label: 'Messages', href: '/messages', icon: 'mail', section: 'System' },
   // { label: 'Help', href: '/help', icon: 'help_circle', section: 'Support' },
   // { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
 ];
