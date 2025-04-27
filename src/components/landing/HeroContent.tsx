@@ -4,6 +4,8 @@ import React from 'react';
 import { AuthButton } from '@/components/auth/AuthButton';
 import { Button } from '../ui/button';
 import { Poppins } from 'next/font/google';
+import ChatbotPopup from './chatbotPopup';
+
 
 const poppins = Poppins({
   subsets: ['latin'],
