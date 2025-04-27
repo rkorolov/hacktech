@@ -13,9 +13,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    console.log("CONVEX URL:", process.env.NEXT_PUBLIC_CONVEX_URL);
-  }, []);
+  console.log(process.env.NEXT_PUBLIC_CONVEX_URL)
   return (
     <motion.div 
       initial={{ opacity: 0 }}
