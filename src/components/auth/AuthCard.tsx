@@ -75,7 +75,7 @@ export function AuthCard({ onAuthSuccess }: AuthCardProps) {
       console.log("[handleOtpSubmit] FormData email:", formData.get("email"));
       console.log("[handleOtpSubmit] FormData code:", formData.get("code"));
   
-      await signIn("email-otp", formData);
+      await signIn("resend-otp", formData);
   
       console.log("[handleOtpSubmit] signIn OTP success ✅");
   

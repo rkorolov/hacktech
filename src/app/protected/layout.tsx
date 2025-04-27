@@ -2,7 +2,7 @@
 
 import type { MenuItem } from "@/components/protected/Sidebar";
 import Sidebar from "@/components/protected/Sidebar";
-import { Header } from "@/components/protected/Header";
+// import { Header } from "@/components/protected/Header";
 import { useAuth } from "@/hooks/use-auth";
 import { AuthLoading, Authenticated, Unauthenticated } from "convex/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -78,7 +78,7 @@ export default function ProtectedLayout({
       </AuthLoading>
       <Authenticated>
         <div className="flex flex-col h-screen">
-          <Header />
+          {/* <Header /> */}
           <div className="flex-1 overflow-hidden">
             <Sidebar menuItems={menuItems} userEmail={user?.email} userName={user?.name}>
               {children}
