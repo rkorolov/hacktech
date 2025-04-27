@@ -25,7 +25,7 @@ export default function ChatbotPopup() {
   }
 
   return (
-    <div className="fixed bottom-10 right-4">
+    <div className="fixed bottom-20 right-4">
       {isOpen ? (
         <div className="bg-white shadow-xl border rounded-lg p-4 w-80 h-96 flex flex-col">
           <div className="flex-1 overflow-y-auto space-y-2 mb-2">
