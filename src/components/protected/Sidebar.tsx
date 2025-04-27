@@ -21,6 +21,7 @@ interface SidebarProps {
   currentPath?: string; // New prop to track the current path for highlighting
   userEmail?: string; // New prop for user email
   userName?: string; // New prop for user name
+  visibility?: boolean; // New prop for visibility of sidebar
 }
 
 // Default menu items to maintain backward compatibility
@@ -29,8 +30,8 @@ const defaultMenuItems: MenuItem[] = [
   { label: 'Profile', href: '/profile', icon: 'person', section: 'Main' },
   { label: 'Settings', href: '/settings', icon: 'settings', section: 'System' },
   { label: 'Messages', href: '/messages', icon: 'mail', section: 'System' },
-  { label: 'Help', href: '/help', icon: 'help_circle', section: 'Support' },
-  { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
+  // { label: 'Help', href: '/help', icon: 'help_circle', section: 'Support' },
+  // { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ 
@@ -40,10 +41,15 @@ const Sidebar: React.FC<SidebarProps> = ({
   pageTitle, // Page title shown in the navigation bar
   currentPath = "", // Current path for highlighting active menu item
   userEmail = "", // User email
-  userName = "" // User name
+  userName = "", // User name
+  visibility = true // default true -- visibility of sidebar
 }) => {
   const [collapsed, setCollapsed] = useState(false);
   const isMobile = useIsMobile();
+
+  if (!visibility) {
+    return<>{children}</> //renders only children -- no sidebar
+  }
 
   // Function to extract and format name from email
   const getNameFromEmail = (email: string): string => {
