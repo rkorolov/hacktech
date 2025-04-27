@@ -4,6 +4,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
 import { UserButton } from '../auth/UserButton';
 import { Button } from "@/components/ui/button";
+import { Poppins } from 'next/font/google';
 
 // Define menu item interface
 export interface MenuItem {
@@ -13,6 +14,12 @@ export interface MenuItem {
   section?: string; // Optional section grouping
 }
 
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'], // choose the weights you want
+});
+
+
 interface SidebarProps {
   children?: React.ReactNode;
   menuItems?: MenuItem[]; // New prop for dynamic menu items
@@ -21,6 +28,7 @@ interface SidebarProps {
   currentPath?: string; // New prop to track the current path for highlighting
   userEmail?: string; // New prop for user email
   userName?: string; // New prop for user name
+  visibility?: boolean; // New prop for visibility of sidebar
 }
 
 // Default menu items to maintain backward compatibility
@@ -29,21 +37,26 @@ const defaultMenuItems: MenuItem[] = [
   { label: 'Profile', href: '/profile', icon: 'person', section: 'Main' },
   { label: 'Settings', href: '/settings', icon: 'settings', section: 'System' },
   { label: 'Messages', href: '/messages', icon: 'mail', section: 'System' },
-  { label: 'Help', href: '/help', icon: 'help_circle', section: 'Support' },
-  { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
+  // { label: 'Help', href: '/help', icon: 'help_circle', section: 'Support' },
+  // { label: 'Discord', href: 'https://discord.gg/2gSmB9DxJW', section: 'Support' }
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ 
   children, 
   menuItems = defaultMenuItems, // Use default items if not provided
-  logoName = "crack.diy", // Default page name if not provided
+  logoName = "lumiViTA", // Default page name if not provided
   pageTitle, // Page title shown in the navigation bar
   currentPath = "", // Current path for highlighting active menu item
-  userEmail = "", // User email
-  userName = "" // User name
+  userEmail = "", // User emai
+  userName = "", // User name
+  visibility = true // default true -- visibility of sidebar
 }) => {
   const [collapsed, setCollapsed] = useState(false);
   const isMobile = useIsMobile();
+
+  if (!visibility) {
+    return<>{children}</> //renders only children -- no sidebar
+  }
 
   // Function to extract and format name from email
   const getNameFromEmail = (email: string): string => {
@@ -82,12 +95,13 @@ const Sidebar: React.FC<SidebarProps> = ({
           isMobile ? 'absolute bg-background z-50' : 'relative'
         } ${
           (isMobile && collapsed) ? '-translate-x-full' : 'translate-x-0'
-        } overflow-y-auto left-0 top-0 border-r border-border flex flex-col`}
+        } overflow-y-auto left-0 top-0 border-r border-border flex flex-col bg-[#DDEAF6]`}
       >
         {/* Logo in Sidebar */}
         <div className="p-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-serif font-extrabold no-underline text-inherit block">
-            {logoName}
+          <Link href="/" className="text-xl font-serif font-medium no-underline text-inherit flex items-center gap-2">
+          <img src="/house.svg" alt="House" className='w-6 h-6'/>
+          <span className={poppins.className}>{logoName}</span>
           </Link>
           {/* Close button - Only visible on mobile */}
           {isMobile && !collapsed && (
@@ -107,7 +121,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           {/* Group menu items by section */}
           {Array.from(new Set(menuItems.map(item => item.section || 'General'))).map(section => (
             <div key={section}>
-              <h3 className="text-xs uppercase text-muted-foreground ml-4 mb-1 mt-4 tracking-wider text-left">
+              <h3 className="text-s uppercase  ml-4 mb-1 mt-4 tracking-wider text-left">
                 {section}
               </h3>
               <ul className="list-none p-0 m-0">
@@ -119,7 +133,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       <li key={index}>
                         <Link 
                           href={item.href}
-                          className={`flex items-center px-7 py-2 text-sm font-medium my-0.5 bg-transparent transition-all duration-200 ease-in justify-start text-left hover:text-foreground hover:bg-accent hover:border-r-accent-foreground hover:border-r-[3px] border-r-transparent ${
+                          className={`flex items-center px-7 py-2 text-s font-medium my-0.5 bg-[#DDEAF6] transition-all duration-200 ease-in justify-start text-left hover:text-foreground hover:bg-accent hover:border-r-accent-foreground hover:border-r-[3px] border-r-transparent ${
                             isActive 
                               ? 'text-foreground bg-accent border-r-accent-foreground border-r-[3px] font-semibold' 
                               : 'text-muted-foreground no-underline'
@@ -135,18 +149,18 @@ const Sidebar: React.FC<SidebarProps> = ({
           ))}
         </nav>
         
-        {/* User information and button */}
+        {/* User information and button
         <div className="px-4 py-3 border-t border-border flex items-center">
           <UserButton size={9} />
           <div className="ml-3 overflow-hidden">
             <p className="text-sm font-medium m-0 truncate">{displayName}</p>
             <p className="text-xs text-muted-foreground m-0 truncate">{userEmail || "No email provided"}</p>
           </div>
-        </div>
+        </div> */}
         
         {/* Credit text */}
-        <div className="px-4 py-3 text-xs text-center border-t border-border">
-          Cooked on <Link href="https://crack.diy" className="underline">
+        <div className="px-4 py-3 text-xs text-center border-t border-border italic">
+          created with <Link href="https://crack.diy" className="underline">
             crack.diy
           </Link>
         </div>

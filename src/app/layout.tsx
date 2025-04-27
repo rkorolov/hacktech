@@ -1,6 +1,6 @@
 import { ConvexClientProvider } from "@/app/ConvexClientProvider";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,11 +13,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+});
+
 export const metadata: Metadata = {
-  title: "Cooked on crack.diy",
-  description: "This app was cooked on crack.diy",
+  title: "lumivita.co",
+  description: "Bringing light into your life",
   icons: {
-    icon: "/favicon_crack_light.png",
+    icon: "/Lumi.png"
+
   },
 };
 
@@ -28,9 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
+    <html lang="en" className={`light ${poppins.className}`}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
+        className={`${poppins.variable}  antialiased bg-background`}
       >
         <ConvexClientProvider>{children}</ConvexClientProvider>
       </body>
