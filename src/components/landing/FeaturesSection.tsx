@@ -50,7 +50,7 @@ export function FeaturesSection() {
           }}
           onClick={scrollToTop}/> */}
         
-        <ChatbotPopup />
+        {/* <ChatbotPopup /> */}
           <div>
   {/* < AuthButton 
     trigger={<Button size="lg">Sign In</Button>} 
@@ -110,7 +110,7 @@ export function FeaturesSection() {
             </div>
 
             <div>
-            <span style={{
+            {/* <span style={{
                   position: "relative",
                   left: "100%",
                   transform: "translateX(-50%)",
@@ -121,7 +121,7 @@ export function FeaturesSection() {
                   borderBottom: "15px solid transparent",
                   borderLeft: "20px solid black",
                   top: "50%",
-                }}></span>
+                }}></span> */}
             </div>
           </div>
 
@@ -134,7 +134,7 @@ export function FeaturesSection() {
               <p style={{fontSize:"22px", color: "#001F54"}}>Caregivers can prescribe appropriate medication</p>
             </div>
             <div>
-              <span style={{
+              {/* <span style={{
                   position: "relative",
                   left: "100%",
                   transform: "translateX(-50%)",
@@ -145,7 +145,7 @@ export function FeaturesSection() {
                   borderBottom: "15px solid transparent",
                   borderLeft: "20px solid #001F54",
                   top: "50%",
-                }}></span>
+                }}></span> */}
             </div>
           </div>   
 
@@ -157,7 +157,7 @@ export function FeaturesSection() {
               <p style={{fontSize:"22px", color: "#001F54"}}>Pairing patients to caregivers based on compatibility</p>
             </div>
             <div>
-              <span style={{
+              {/* <span style={{
                   position: "relative",
                   left: "100%",
                   transform: "translateX(-50%)",
@@ -168,7 +168,7 @@ export function FeaturesSection() {
                   borderBottom: "15px solid transparent",
                   borderLeft: "20px solid #001F54",
                   top: "50%",
-                }}></span>
+                }}></span> */}
             </div>
           </div>
           <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid #001F54"}} />
@@ -180,7 +180,7 @@ export function FeaturesSection() {
           <p style={{fontSize:"22px", color: "#001F54"}}>Lumi chatbot available 24/7</p>
           </div>
           <div>
-            <span style={{
+            {/* <span style={{
                 position: "relative",
                 left: "100%",
                 transform: "translateX(-50%)",
@@ -191,7 +191,7 @@ export function FeaturesSection() {
                 borderBottom: "15px solid transparent",
                 borderLeft: "20px solid #001F54",
                 top: "50%",
-              }}></span>
+              }}></span> */}
           </div>
           </div>
           </div>

@@ -28,7 +28,6 @@ export function HeroContent() {
     gap: "20px", 
     color: "#001F54", 
     fontSize: "18px",
-    backgroundColor: "rgba(254, 252, 251, 0.5)", 
     padding: "20px", 
     borderRadius: "5px",
     marginTop: "5px",
@@ -67,7 +66,7 @@ export function HeroContent() {
           trigger={<Button size="lg">Get Started</Button>} 
           dashboardTrigger={<Button size="lg">Dashboard</Button>} 
         />
-        <p>Learn More <span>→</span></p>
+        <a href="#servicesSection">Learn More <span>→</span></a>
       </div>
     </div>
   </div>
