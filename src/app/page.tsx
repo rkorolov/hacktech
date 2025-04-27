@@ -13,7 +13,10 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 export default function Home() {
-  console.log(process.env.NEXT_PUBLIC_CONVEX_URL)
+  useEffect(() => {
+    console.log("✅ Convex URL:", process.env.NEXT_PUBLIC_CONVEX_URL);
+  }, []);
+  
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -22,11 +25,11 @@ export default function Home() {
       className="flex flex-col items-center justify-center"
     >
       <div className="max-w-6xl mx-auto relative px-4">
-        <p><Header /></p>
-        <p><HeroContent /></p>
-        <p><FeaturesSection /> </p>
+        <Header />
+        <HeroContent />
+        <FeaturesSection />
       </div>
-      <p><Footer /></p>
+      <Footer />
     </motion.div>
   );
 }
