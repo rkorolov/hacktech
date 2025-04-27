@@ -32,80 +32,143 @@ export function FeaturesSection() {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"></link>
 
         {/* About */} 
-        <div style={{display: "flex", justifyContent:"flex-end", fontFamily: "Poppins", margin: 0, fontSize: "25px", flexDirection: "column", marginRight:"-50px", textAlign:"right", right: "-400px", paddingTop: "800px"}}>
-          <p style={{fontWeight: "700", }}>About LumiViTA</p>
-          <p style={{fontSize: "56px", fontWeight: "700"}}>Clarity and vitality are <br />the heart of better <br />healthcare</p>
-          <p style={{fontSize: "25px"}}>At LumiViTA, we empower patients and caregivers<br />
-            through seamless, technology-driven solutions <br />
-              that prioritize connection, insight, and personalized <br />
-              care. By combining the illuminating power of <br />
-              innovation with a deep commitment to life and <br />
-              wellness, LumiViTA is redefining the future of healthcare <br />
-              — making it clearer, smarter, and more human.</p>
+        <div style={{display: "flex", justifyContent: "space-between", paddingTop: "800px",}}>
+        <div style={{display: "flex"}}>
+          <div>
+              <img src="../../../../lumivitaDesigns/doctor.png" alt="image of doctor"
+                style={{
+                  width: "300px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  
+              }}/>
+          </div>
+          <div>
+            <img src="../../../../lumivitaDesigns/pills.png" alt="image of pills"
+              style={{
+                paddingTop:"350px",
+                width: "300px", // Set the size of the image
+                height: "auto", // Maintain aspect ratio
+                objectFit: "contain", // Ensure the image doesn't distort
+                display: "inline-block", // Keep the image inline with text
+                // marginLeft:"20"
+            }}/>
+          </div>
+            </div>
+          <div style={{fontFamily: "Poppins", margin: 0, fontSize: "25px", flexDirection: "column", marginRight:"-50px", textAlign:"right", right: "-40px", position:"relative"}}>
+            <p style={{fontWeight: "700", position:"relative"}}>About LumiViTA</p>
+            <p style={{fontSize: "56px", fontWeight: "700", position:"relative"}}>Clarity and vitality are <br />the heart of better <br />healthcare</p>
+            <p style={{fontSize: "25px"}}>At LumiViTA, we empower patients and caregivers<br />
+              through seamless, technology-driven solutions <br />
+                that prioritize connection, insight, and personalized <br />
+                care. By combining the illuminating power of <br />
+                innovation with a deep commitment to life and <br />
+                wellness, LumiViTA is redefining the future of healthcare <br />
+                — making it clearer, smarter, and more human.</p>
+            </div>
+          
+            
           </div>
 
         {/* Services */} 
-        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", flexDirection: "column", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"800px"}}>
-          <p style={{fontSize:"25px", fontWeight:"600"}}>Our Services</p>
-          <div style={{position:"relative"}}>
-            <p style={{fontSize:"40px", fontWeight:"600"}}>Appointment Management</p>
-              <span style={{
-                position: "absolute",
-                left: "59%",
-                transform: "translateX(-50%)",
-                display: "inline-block",
-                width: "0",
-                height: "0",
-                borderTop: "15px solid transparent",
-                borderBottom: "15px solid transparent",
-                borderLeft: "20px solid black",
-                top: "50%",
-              }}></span>
-            <p style={{fontSize:"22px"}}>Caregivers can manage and create appointments</p>
-          </div>
-          <hr style={{ width: "60%", margin: "20px 0", borderTop: "2px solid black" }} />
+        <div style={{display: "flex", justifyContent: "flex-start", fontFamily: "Poppins", margin: 0, fontSize: "15px", marginLeft:"-50px", textAlign:"left", left: "-5550px", paddingTop:"800px"}}>
           
-          <div style={{position:"relative"}}>
-            <p style={{fontSize:"40px", fontWeight:"600"}}>Prescription Management</p>
+          <div >
+            <p style={{fontSize:"25px", fontWeight:"600"}}>Our Services</p>
+
+            <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+            <div style={{position:"relative"}}>
+              <p style={{fontSize:"40px", fontWeight:"600"}}>Appointment Management</p>
+              <p style={{fontSize:"22px"}}>Caregivers can manage and create appointments</p>
+            </div>
+
+            <div>
             <span style={{
-                position: "absolute",
-                left: "59%",
-                transform: "translateX(-50%)",
-                display: "inline-block",
-                width: "0",
-                height: "0",
-                borderTop: "15px solid transparent",
-                borderBottom: "15px solid transparent",
-                borderLeft: "20px solid black",
-                top: "50%",
-              }}></span>
-            <p style={{fontSize:"22px"}}>Caregivers can prescribe appropriate medication</p>
+                  position: "relative",
+                  left: "100%",
+                  transform: "translateX(-50%)",
+                  display: "inline-block",
+                  width: "0",
+                  height: "0",
+                  borderTop: "15px solid transparent",
+                  borderBottom: "15px solid transparent",
+                  borderLeft: "20px solid black",
+                  top: "50%",
+                }}></span>
+            </div>
           </div>
-          <hr style={{ width: "60%", margin: "20px 0", borderTop: "2px solid black" }} />
 
-          <div style={{position:"relative"}}>
-          <p style={{fontSize:"40px", fontWeight:"600"}}>Patient-Caregiver Matching</p>
-          <span style={{
-                position: "absolute",
-                left: "59%",
-                transform: "translateX(-50%)",
-                display: "inline-block",
-                width: "0",
-                height: "0",
-                borderTop: "15px solid transparent",
-                borderBottom: "15px solid transparent",
-                borderLeft: "20px solid black",
-                top: "50%",
-              }}></span>
-          <p style={{fontSize:"22px"}}>Pairing patients to caregivers based on compatibility</p>
+
+          <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid black" }} />
+
+          <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+            <div style={{position:"relative"}}>
+              <p style={{fontSize:"40px", fontWeight:"600"}}>Prescription Management</p>
+              <p style={{fontSize:"22px"}}>Caregivers can prescribe appropriate medication</p>
+            </div>
+            <div>
+              <span style={{
+                  position: "relative",
+                  left: "100%",
+                  transform: "translateX(-50%)",
+                  display: "inline-block",
+                  width: "0",
+                  height: "0",
+                  borderTop: "15px solid transparent",
+                  borderBottom: "15px solid transparent",
+                  borderLeft: "20px solid black",
+                  top: "50%",
+                }}></span>
+            </div>
+          </div>   
+
+          <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid black" }} />
+
+          <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
+            <div style={{position:"relative"}}>
+              <p style={{fontSize:"40px", fontWeight:"600"}}>Patient-Caregiver Matching</p>
+              <p style={{fontSize:"22px"}}>Pairing patients to caregivers based on compatibility</p>
+            </div>
+            <div>
+              <span style={{
+                  position: "relative",
+                  left: "100%",
+                  transform: "translateX(-50%)",
+                  display: "inline-block",
+                  width: "0",
+                  height: "0",
+                  borderTop: "15px solid transparent",
+                  borderBottom: "15px solid transparent",
+                  borderLeft: "20px solid black",
+                  top: "50%",
+                }}></span>
+            </div>
           </div>
-          <hr style={{ width: "60%", margin: "20px 0", borderTop: "2px solid black"}} />
+          <hr style={{ width: "100%", margin: "20px 0", borderTop: "2px solid black"}} />
 
+
+        <div style={{display: "flex", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  marginBottom: "20px"}}>
           <div style={{position:"relative"}}>
           <p style={{fontSize:"40px", fontWeight:"600"}}>24/7 Customer Service</p>
-          <span style={{
-                position: "absolute",
-                left: "59%",
+          <p style={{fontSize:"22px"}}>Lumi chatbot available 24/7</p>
+          </div>
+          <div>
+            <span style={{
+                position: "relative",
+                left: "100%",
                 transform: "translateX(-50%)",
                 display: "inline-block",
                 width: "0",
@@ -115,8 +178,24 @@ export function FeaturesSection() {
                 borderLeft: "20px solid black",
                 top: "50%",
               }}></span>
-          <p style={{fontSize:"22px"}}>Lumi chatbot available 24/7</p>
           </div>
+          </div>
+          </div>
+
+
+          <div>
+            
+        <img src="../../../../lumivitaDesigns/bear.png" alt="image of bear"
+                style={{
+                  width: "500px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  position:"relative",
+                  left:"50px"
+                  
+              }}/>
+        </div>
         </div>
         
 
@@ -129,10 +208,95 @@ export function FeaturesSection() {
           conditionals  and user input. From that assignment, we came to realize assigning priority<br />
           scores was a lot more nuanced than we realized. We decided to come together to build this<br />
           application, and help those in need.</p>
-
         </div>
-        
+        <div style={{display:"flex"}}>
+        <div style={{display: "flex", 
+                    justifyContent: "space-between", 
+                    alignItems: "center",
+                    marginBottom: "20px"}}>
+          <div>
+            <img src="../../../../lumivitaDesigns/ruslana.png" alt="image of ruslana"
+                style={{
+                  width: "300px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  position:"relative",
+                }}/>
+          </div>
+          <div>
+            <img src="../../../../lumivitaDesigns/hanna.png" alt="image of hanna"
+              style={{
+                width: "300px", // Set the size of the image
+                height: "auto", // Maintain aspect ratio
+                objectFit: "contain", // Ensure the image doesn't distort
+                display: "inline-block", // Keep the image inline with text
+                position:"relative",
+              }}/>
+
+          </div>
+          <div style={{display: "flex", 
+                    justifyContent: "space-between", 
+                    alignItems: "center",
+                    marginBottom: "20px"}}>
+          <div>
+            <img src="../../../../lumivitaDesigns/nicole.png" alt="image of nicole"
+                style={{
+                  width: "300px", // Set the size of the image
+                  height: "auto", // Maintain aspect ratio
+                  objectFit: "contain", // Ensure the image doesn't distort
+                  display: "inline-block", // Keep the image inline with text
+                  position:"relative",
+                }}/>
+          </div>
+          <div>
+            <img src="../../../../lumivitaDesigns/alice.png" alt="image of alice"
+              style={{
+                width: "300px", // Set the size of the image
+                height: "auto", // Maintain aspect ratio
+                objectFit: "contain", // Ensure the image doesn't distort
+                display: "inline-block", // Keep the image inline with text
+                position:"relative",
+              }}/>
+
+            </div>
+          </div>
+        </div>
       </div>
       
+      <div style={{display:"flex"}}>
+      <div style={{display: "flex", 
+                  justifyContent: "space-between", 
+                  alignItems: "center",
+                  marginBottom: "20px"}}>
+        <div>
+          <p>
+          Ruslana Korolov</p>
+          <p>
+          Backend/Frontend Engineer
+          </p>
+        </div>
+        <div>
+          <p>Hanna Pan </p>
+          <p>UI/UX Designer</p>
+
+        </div>
+        <div style={{display: "flex", 
+                  justifyContent: "space-between", 
+                  alignItems: "center",
+                  marginBottom: "20px"}}>
+        <div>
+          <p>Nicole Ham</p>
+          <p>Backend/Frontend Engineer</p>
+        </div>
+        <div>
+          <p>Alice Zhu</p>
+          <p>Backend/Frontend Engineer</p>
+
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
   );
 }
