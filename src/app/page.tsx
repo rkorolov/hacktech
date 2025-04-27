@@ -20,11 +20,11 @@ export default function Home() {
       className="flex flex-col items-center justify-center"
     >
       <div className="max-w-6xl mx-auto relative px-4">
-        <Header />
-        <HeroContent />
-        <FeaturesSection />
+        <p><Header /></p>
+        <p><HeroContent /></p>
+        <p><FeaturesSection /> </p>
       </div>
-      <Footer />
+      <p><Footer /></p>
     </motion.div>
   );
 }
