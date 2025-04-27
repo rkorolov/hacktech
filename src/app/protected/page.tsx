@@ -52,6 +52,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'], // choose the weights you want
+});
+
 export default function ProtectedPage() {
   const { user, isLoading } = useAuth();
   const router = useRouter();
@@ -62,6 +69,8 @@ export default function ProtectedPage() {
     api.forms.getFormsWithoutAppointments,
     user?.role === ROLES.CAREGIVER ? { limit: 10 } : "skip"
   );
+
+  const name = user?.name || user?.role;
   
   const patientFormsByStatus = useQuery(
     api.forms.getFormsByAppointmentStatus,
@@ -138,10 +147,12 @@ export default function ProtectedPage() {
     return (
       <div className="container">
         {/* Change the name to say hello, NAME */}
-        <h2 className="mt-8 text-6xl font-bold mb-8 tracking-tight">
+        <div className="mt-8 text-6xl font-medium mb-8 tracking-tight">
+          <div className={poppins.className}>
           <span className="text-[#001F54]">Hello, </span>
-          <span className="text-[#21A3DB]">Caregiver</span>
-        </h2>
+          <span className={`text-[#21A3DB]`}>{name}</span>
+          </div>
+        </div>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -339,7 +350,7 @@ export default function ProtectedPage() {
       {/* <h2 className="mt-8 text-4xl font-bold mb-6 tracking-tight">Hello, Patient</h2> */}
       <h2 className="mt-8 text-6xl font-bold mb-8 tracking-tight">
         <span className="text-[#001F54]">Hello, </span>
-        <span className="text-[#21A3DB]">Patient</span>
+        <span className="text-[#21A3DB]">{ name }</span>
       </h2>
       
       <motion.div
