@@ -5,6 +5,7 @@ import { AuthButton } from '@/components/auth/AuthButton';
 import { Button } from '../ui/button';
 import { Poppins } from 'next/font/google';
 import ChatbotPopup from './chatbotPopup';
+import { SignInButton, SignOutButton } from '@clerk/clerk-react';
 
 
 const poppins = Poppins({
@@ -44,7 +45,11 @@ export function HeroContent() {
 
           <p style={{fontSize: "30px", color: "#034078", fontWeight: "500", marginTop: "-20px"}}>Bringing Light Into Your Life</p>
         <div style={{ display: "flex", gap: "20px", justifyContent: "center", alignItems: "center", fontSize: "18px",  textAlign: "center", paddingTop: "20px" }}>
-              <AuthButton trigger={<Button  size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
+              {/* <AuthButton trigger={<Button  size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
+               */}
+              <SignInButton mode='modal' forceRedirectUrl="/protected/set-role"/>
+              <SignOutButton />
+              
               <a href="#servicesSection">Learn More <span>→</span></a>
         </div>
         </div>

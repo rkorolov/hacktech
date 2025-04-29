@@ -32,7 +32,8 @@ export const severityValidator = v.union(
 const schema = defineSchema({
   ...authTables,
 
-  users: defineTable({
+  users: defineTable({      //added
+    tokenIdentifier: v.string(),
     name: v.optional(v.string()),
     image: v.optional(v.string()),
     email: v.optional(v.string()),
@@ -40,7 +41,8 @@ const schema = defineSchema({
     isAnonymous: v.optional(v.boolean()),
     role: v.optional(roleValidator),
     specialty: v.optional(v.string()), // For caregivers
-  }).index("email", ["email"]),
+  })  .index("by_tokenIdentifier", ["tokenIdentifier"]),
+  
 
   forms: defineTable({
     patientId: v.id("users"),
