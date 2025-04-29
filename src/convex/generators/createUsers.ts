@@ -9,12 +9,12 @@ export const createUsers = internalMutation({
     // Check if test users already exist by email
     const existingCaregiver = await ctx.db
       .query("users")
-      .withIndex("email", (q) => q.eq("email", "test.caregiver@example.com"))
+      .withIndex("by_tokenIdentifier", (q) =>  q.eq("tokenIdentifier", "1234"))
       .first();
 
     const existingPatient = await ctx.db
       .query("users")
-      .withIndex("email", (q) => q.eq("email", "test.patient@example.com"))
+      .withIndex("by_tokenIdentifier", (q) => q.eq("tokenIdentifier", "5678"))
       .first();
 
     let caregiverId: Id<"users">;
@@ -25,6 +25,7 @@ export const createUsers = internalMutation({
       caregiverId = existingCaregiver._id;
     } else {
       caregiverId = await ctx.db.insert("users", {
+        tokenIdentifier: "1234",
         name: "Dr. Sarah Smith",
         email: "test.caregiver@example.com",
         emailVerificationTime: Date.now(),
@@ -39,6 +40,7 @@ export const createUsers = internalMutation({
       patientId = existingPatient._id;
     } else {
       patientId = await ctx.db.insert("users", {
+        tokenIdentifier: "5678",
         name: "John Doe",
         email: "test.patient@example.com",
         emailVerificationTime: Date.now(),

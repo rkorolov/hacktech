@@ -1,4 +1,5 @@
 import { ConvexClientProvider } from "@/app/ConvexClientProvider";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins} from "next/font/google";
 import "./globals.css";
