@@ -44,14 +44,14 @@ export function HeroContent() {
             <span style={{color:"#21A3DB"}}>ViTA</span></p>
 
           <p style={{fontSize: "30px", color: "#034078", fontWeight: "500", marginTop: "-20px"}}>Bringing Light Into Your Life</p>
-        <div style={{ display: "flex", gap: "20px", justifyContent: "center", alignItems: "center", fontSize: "18px",  textAlign: "center", paddingTop: "20px" }}>
-              {/* <AuthButton trigger={<Button  size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
-               */}
-              <SignInButton mode='modal' forceRedirectUrl="/protected/set-role"/>
-              <SignOutButton />
-              
-              <a href="#servicesSection">Learn More <span>→</span></a>
-        </div>
+          <div style={{ display: "flex", gap: "20px", justifyContent: "center", alignItems: "center", fontSize: "18px",  textAlign: "center", paddingTop: "20px" }}>
+                {/* <AuthButton trigger={<Button  size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
+                */}
+                <SignInButton mode='modal' forceRedirectUrl="/protected/set-role"/>
+                
+                
+                <a href="#servicesSection">Learn More <span>→</span></a>
+          </div>
         </div>
       </div>
       <ChatbotPopup />

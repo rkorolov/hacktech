@@ -133,6 +133,8 @@ export default function ProtectedPage() {
     }
   };
 
+
+
   if (user?.role === ROLES.CAREGIVER) {
     const filteredPatients = allPatients?.filter(patient => {
       if (!searchQuery) return true;
@@ -217,8 +219,10 @@ export default function ProtectedPage() {
                         </div>
                       </div>
                       <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                        Priority
                         {form.priorityScore.toFixed(1)}
                       </Badge>
+
                     </div>
                   </CardHeader>
                   <CardContent className="pb-2">
