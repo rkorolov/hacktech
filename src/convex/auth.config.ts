@@ -1,7 +1,7 @@
 export default {
   providers: [
     {
-      domain: "https://intense-whale-37.clerk.accounts.dev",
+      domain: "https://clerk.lumivita.co", // for dev https://intense-whale-37.clerk.accounts.dev
       applicationID: "convex",
     },
   ],
