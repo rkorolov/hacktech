@@ -55,7 +55,7 @@ export default function ChatbotPopup() {
       
 
       <button
-        className=" text-white p-4 rounded-full shadow-lg flex fixed"
+        className="flex fixed"
         onClick={() => {
           setIsOpen((prev) => {
             const newIsOpen = !prev;
@@ -68,7 +68,7 @@ export default function ChatbotPopup() {
           });
         }}
       >
-        {/* <img src="/lumivitaDesigns/Lumi.png" className="max-w-20 max-h-20" /> */}
+       
         <img 
           src="../../../../lumivitaDesigns/Lumi.png" 
           alt="small image"

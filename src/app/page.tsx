@@ -37,9 +37,8 @@ export default function Home() {
         </div>
       </div>
 
-
-      <div className="max-w-6xl mx-auto px-4">
-        <FeaturesSection />
+      <div className="relative w-full border-b-2 border-gray-[#D9D9D9]">
+        <div><FeaturesSection /></div>
       </div>
       
       <div><Footer /></div>
