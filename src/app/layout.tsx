@@ -21,7 +21,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "lumivita.co",
+  title: "lumivita",
   description: "Bringing light into your life",
   icons: {
     icon: "/lumivitaDesigns/Lumi.png",
