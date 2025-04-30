@@ -84,26 +84,26 @@ export function FeaturesSection() {
             {[{
               title: "Appointment Management",
               desc: "Caregivers can manage and create appointments",
-              // icon: <CloudIcon className="h-8 w-8 text-[#001F54]" />
+              icon: <div></div>
             },{
               title: "Prescription Management",
               desc: "Caregivers can prescribe appropriate medication",
-              // icon: <LockIcon className="h-8 w-8 text-[#001F54]" />
+              icon: <div></div>
             },{
               title: "Patient-Caregiver Matching",
               desc: "Pairing patients to caregivers based on compatibility",
-              // icon: <RefreshCcwIcon className="h-8 w-8 text-[#001F54]" />
+              icon: <div></div>
             },{
               title: "24/7 Customer Service",
               desc: "Lumi chatbot available 24/7",
-              // icon: <ChatbotPopup />
-            }].map(({ title, desc}) => ( // add icon back in here
+              icon: <ChatbotPopup />
+            }].map(({ title, desc, icon}) => ( // add icon back in here
               <div key={title} className="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div className="space-y-2">
                   <h3 className="text-3xl font-extrabold text-[#001F54]">{title}</h3>
                   <p className="text-lg text-[#001F54]">{desc}</p>
                 </div>
-                {/* <div>{icon}</div> */}
+                <div>{icon}</div>
                 <hr className="border-t-2 border-[#001F54] w-full mt-8 md:hidden" />
               </div>
             ))}

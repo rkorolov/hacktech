@@ -17,6 +17,7 @@ export const createAppointment = mutation({
       throw new Error("Only caregivers can create appointments");
     }
 
+    console.log("")
     return await ctx.db.insert("appointments", {
       patientId: args.patientId,
       caregiverId: user._id,
