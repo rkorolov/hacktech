@@ -2,9 +2,9 @@
 // Make sure that the marketing text in the HeroContent and FeaturesSection are always edited to reflect the app marketing
 
 "use client"
-import Image from "next/image";
-import { AuthButton } from "@/components/auth/AuthButton";
-import { ThreeJsScene } from "@/components/landing/three-js-scene";
+// import Image from "next/image";
+// import { AuthButton } from "@/components/auth/AuthButton";
+// import { ThreeJsScene } from "@/components/landing/three-js-scene";
 import { HeroContent } from "@/components/landing/HeroContent";
 import { Header } from "@/components/landing/Header";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";

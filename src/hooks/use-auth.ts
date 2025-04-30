@@ -2,7 +2,7 @@
 
 import { api } from "@/convex/_generated/api";
 import { useConvexAuth, useQuery } from "convex/react";
-import { useUser, useClerk } from "@clerk/clerk-react";
+import { useUser, useClerk } from "@clerk/nextjs";
 
 import { useEffect, useState } from "react";
 

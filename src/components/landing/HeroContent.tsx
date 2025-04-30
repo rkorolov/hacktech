@@ -5,7 +5,7 @@ import { AuthButton } from '@/components/auth/AuthButton';
 import { Button } from '../ui/button';
 import { Poppins } from 'next/font/google';
 import ChatbotPopup from './chatbotPopup';
-import { SignInButton, SignOutButton } from '@clerk/clerk-react';
+import { SignInButton, SignOutButton } from '@clerk/nextjs';
 
 
 const poppins = Poppins({

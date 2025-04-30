@@ -19,7 +19,7 @@ interface UserButtonProps {
 }
 
 export function UserButton({ className, size = 8 }: UserButtonProps) {
-  const { isLoading, isAuthenticated, user, signIn, signOut } = useAuth()
+  const { isLoading, isAuthenticated, user, signOut } = useAuth()
   const router = useRouter() // Add router for navigation
   const [showSignOutConfirm, setShowSignOutConfirm] = useState(false)
 
