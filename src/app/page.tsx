@@ -24,11 +24,24 @@ export default function Home() {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center"
     >
-      <div className="max-w-6xl mx-auto relative px-4">
-        <div><Header /></div>
-        <div><HeroContent /></div>
-        <div><FeaturesSection /> </div>
+      <div className="relative w-full border-b-2 border-gray-[#D9D9D9]">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 
+                    bg-[url('/lumivita_designs/background.png')] 
+                    bg-center bg-cover bg-no-repeat"
+        />
+        <div className="relative max-w-6xl mx-auto px-4 py-16">
+          <Header />
+          <HeroContent />
+        </div>
       </div>
+
+
+      <div className="max-w-6xl mx-auto px-4">
+        <FeaturesSection />
+      </div>
+      
       <div><Footer /></div>
     </motion.div>
   );
