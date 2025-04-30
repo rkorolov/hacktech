@@ -27,7 +27,7 @@ export function FeaturesSection() {
             <img
               src="/lumivitaDesigns/doctor.png"
               alt="Doctor"
-              className="w-90 object-contain md:self-start"
+              className="w-90 object-contain "
             />
             <img
               src="/lumivitaDesigns/pills.png"
@@ -70,12 +70,17 @@ export function FeaturesSection() {
             bg-top bg-cover bg-no-repeat
           "/>
 
-          <h2 className="text-2xl font-semibold text-[#001F54]">
-            Our Services
-          </h2>
-
+          
+          
+          <div 
+            className="
+            flex flex-row justify-center 
+            ">
           {/* Service Item */}
           <div className="space-y-8">
+            <h2 className="text-2xl font-semibold text-[#001F54]">
+              Our Services
+            </h2>
             {[{
               title: "Appointment Management",
               desc: "Caregivers can manage and create appointments",
@@ -92,16 +97,23 @@ export function FeaturesSection() {
               title: "24/7 Customer Service",
               desc: "Lumi chatbot available 24/7",
               // icon: <ChatbotPopup />
-            }].map(({ title, desc, icon }) => (
+            }].map(({ title, desc}) => ( // add icon back in here
               <div key={title} className="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div className="space-y-2">
                   <h3 className="text-3xl font-extrabold text-[#001F54]">{title}</h3>
                   <p className="text-lg text-[#001F54]">{desc}</p>
                 </div>
-                <div>{icon}</div>
+                {/* <div>{icon}</div> */}
                 <hr className="border-t-2 border-[#001F54] w-full mt-8 md:hidden" />
               </div>
             ))}
+          </div>
+
+          <img
+              src="/lumivitaDesigns/bear.png"
+              alt="Doctor"
+              className="w-180 object-contain md:-mt-20"
+            />
           </div>
       </section>
 
