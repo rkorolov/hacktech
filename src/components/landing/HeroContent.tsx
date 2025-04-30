@@ -48,9 +48,8 @@ export function HeroContent() {
                 {/* <AuthButton trigger={<Button  size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
                 */}
                 <SignInButton mode='modal' forceRedirectUrl="/protected/set-role"/>
-                
-                
                 <a href="#servicesSection">Learn More <span>→</span></a>
+                <SignOutButton />
           </div>
         </div>
       </div>
