@@ -1,11 +1,8 @@
-// TODO: UPDATE THE TEXT TO REFLECT THE APP MARKETING
-
 import React from 'react';
-import { AuthButton } from '@/components/auth/AuthButton';
-import { Button } from '../ui/button';
 import { Poppins } from 'next/font/google';
 import ChatbotPopup from './chatbotPopup';
-import { SignInButton, SignOutButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignIn, SignInButton, SignOutButton, UserButton} from '@clerk/nextjs';
+import Link from 'next/link';
 
 
 const poppins = Poppins({
@@ -47,8 +44,19 @@ export function HeroContent() {
           <div style={{ display: "flex", gap: "20px", justifyContent: "center", alignItems: "center", fontSize: "18px",  textAlign: "center", paddingTop: "20px" }}>
                 {/* <AuthButton trigger={<Button  size="lg">Get Started</Button>} dashboardTrigger={<Button size="lg">Dashboard</Button>} />
                 */}
-                <SignInButton mode='modal' forceRedirectUrl="/protected/set-role"/>
+                <SignedOut>
+                  <SignInButton mode='modal' forceRedirectUrl="/protected/set-role"/>
+                </SignedOut>
+
+                <SignedIn>
+                  <Link href="/protected">Dashboard</Link>
+                </SignedIn>
+
+                
+
                 <a href="#servicesSection">Learn More <span>→</span></a>
+
+                
                 <SignOutButton />
           </div>
         </div>

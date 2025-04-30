@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
-import { UserButton } from '../auth/UserButton';
+import { UserButton } from '@clerk/nextjs';
 import { Button } from "@/components/ui/button";
 import { Poppins } from 'next/font/google';
 
@@ -157,13 +157,18 @@ const Sidebar: React.FC<SidebarProps> = ({
             <p className="text-xs text-muted-foreground m-0 truncate">{userEmail || "No email provided"}</p>
           </div>
         </div> */}
+
+        
+        {/* <div className="px-8 py-6 border-t border-border flex items-center justify-center">
+          <UserButton/>
+        </div> */}
         
         {/* Credit text */}
-        <div className="px-4 py-3 text-xs text-center border-t border-border italic">
+        {/* <div className="px-4 py-3 text-xs text-center border-t border-border italic">
           created with <Link href="https://crack.diy" className="underline">
             crack.diy
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Content area */}
