@@ -79,19 +79,19 @@ export function FeaturesSection() {
             {[{
               title: "Appointment Management",
               desc: "Caregivers can manage and create appointments",
-              icon: <CloudIcon className="h-8 w-8 text-[#001F54]" />
+              // icon: <CloudIcon className="h-8 w-8 text-[#001F54]" />
             },{
               title: "Prescription Management",
               desc: "Caregivers can prescribe appropriate medication",
-              icon: <LockIcon className="h-8 w-8 text-[#001F54]" />
+              // icon: <LockIcon className="h-8 w-8 text-[#001F54]" />
             },{
               title: "Patient-Caregiver Matching",
               desc: "Pairing patients to caregivers based on compatibility",
-              icon: <RefreshCcwIcon className="h-8 w-8 text-[#001F54]" />
+              // icon: <RefreshCcwIcon className="h-8 w-8 text-[#001F54]" />
             },{
               title: "24/7 Customer Service",
               desc: "Lumi chatbot available 24/7",
-              icon: <ChatbotPopup />
+              // icon: <ChatbotPopup />
             }].map(({ title, desc, icon }) => (
               <div key={title} className="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div className="space-y-2">
