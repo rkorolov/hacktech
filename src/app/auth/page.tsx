@@ -2,6 +2,7 @@
 
 import { AuthCard } from "@/components/auth/AuthCard"; // assuming you have an AuthCard (form) component
 import { useAuth } from "@/hooks/use-auth"; // or wherever your custom hook is
+import { SignUp, SignUpButton } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
 
@@ -18,7 +19,8 @@ function SignIn() {
 
   return (
     <div className="flex h-screen items-center justify-center bg-background">
-      <AuthCard />
+      {/* <AuthCard /> */}
+      <SignUpButton/>
     </div>
   );
 }
