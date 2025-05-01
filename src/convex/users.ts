@@ -63,7 +63,9 @@ export const ensureUser = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Not authenticated");
 
-    const{ tokenIdentifier, email, name} = identity;
+    console.log(identity)
+
+    const{ tokenIdentifier, email, givenName, familyName} = identity;
     if (!email) {
       throw new Error("No email claim");
     }
@@ -76,13 +78,15 @@ export const ensureUser = mutation({
 
     if (existing) return existing._id;
 
-    console.log(tokenIdentifier, email, name)
+    console.log(givenName, familyName)
+
+    const full = givenName + " " + familyName
     
     // Insert new if missing
     return await ctx.db.insert("users", {
       tokenIdentifier: tokenIdentifier,
       email: email,
-      name: name,
+      name: full,
     });
   },
 });
