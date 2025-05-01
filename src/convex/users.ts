@@ -63,7 +63,7 @@ export const ensureUser = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Not authenticated");
 
-    const{ tokenIdentifier, email} = identity;
+    const{ tokenIdentifier, email, name} = identity;
     if (!email) {
       throw new Error("No email claim");
     }
@@ -76,12 +76,13 @@ export const ensureUser = mutation({
 
     if (existing) return existing._id;
 
-    console.log(tokenIdentifier, email)
+    console.log(tokenIdentifier, email, name)
     
     // Insert new if missing
     return await ctx.db.insert("users", {
       tokenIdentifier: tokenIdentifier,
       email: email,
+      name: name,
     });
   },
 });
@@ -101,18 +102,12 @@ export const getCurrentUser = async (ctx: QueryCtx) => {
   const firstUser = await ctx.db.query("users").first();
   console.log("first user", firstUser)
 
-  
-
-  const hardcodedUser = await ctx.db.query("users").filter((q) => q.eq(q.field("tokenIdentifier"), "https://intense-whale-37.clerk.accounts.dev|user_2wQ48zv08Hll5ORtBju2yEpxC3h"))
-  .first();
 
   // if (tokenIdentifier === "https://intense-whale-37.clerk.accounts.dev|user_2wQ48zv08Hll5ORtBju2yEpxC3h") {
   //   console.log("TRUE")
   // } else {
   //   console.log("FALSE -- something wrong")
   // }
-
-  console.log("hardcoded: ", hardcodedUser)
 
   const user = await ctx.db
     .query("users")
